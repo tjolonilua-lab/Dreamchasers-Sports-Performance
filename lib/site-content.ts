@@ -79,9 +79,11 @@ export type AthleteOfferProofPost = {
  */
 export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
   {
-    instagramUrl: normalizeInstagramPermalink(DEFAULT_INSTAGRAM_POST_PERMALINKS[0]!),
+    instagramUrl: normalizeInstagramPermalink(
+      "https://www.instagram.com/p/DFOMbbZPUFa/?igsh=MWgyaG5tMzVjOG52bA==",
+    ),
     captionExcerpt:
-      "Real reps and real progression from athletes who train here — follow along for offer and signing moments as they post.",
+      "Offer and commitment moment from the Dreamchasers grid — tap through for the full story on Instagram.",
   },
 ];
 
