@@ -56,6 +56,8 @@ export const YOUTH_SPORTS_PERFORMANCE_CAMP = {
   registerInquiryCtaLabel: "Register via inquiry form",
   /** Supplementary visual; all critical details are duplicated in text. */
   flyerImageSrc: "/marketing/youth-camp-flyer.png",
+  /** Suggested filename when visitors download the flyer (same-origin asset). */
+  flyerDownloadFilename: "youth-sports-performance-camp-flyer.png",
   flyerImageAlt:
     "Youth Sports Performance Camp promotional flyer — Kingwood Middle School, summer 2026.",
 } as const;
@@ -74,10 +76,9 @@ function normalizeInstagramPermalink(url: string): string {
   }
 }
 
-/** Default embed when no `NEXT_PUBLIC_INSTAGRAM_POST_URLS` (feed or env picks). */
+/** Default embed when no `NEXT_PUBLIC_INSTAGRAM_POST_URLS` (carousel-friendly permalink; embed shows full post). */
 const DEFAULT_INSTAGRAM_POST_PERMALINKS = [
-  "https://www.instagram.com/reel/DXzxQcVBt1y/",
-  "https://www.instagram.com/reel/DSBROMGEddK/",
+  "https://www.instagram.com/p/DF_cqGmOpEA/",
 ];
 
 export function parseInstagramEmbedUrls(): string[] {

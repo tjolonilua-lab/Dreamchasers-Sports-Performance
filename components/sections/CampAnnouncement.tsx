@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/components/ui/Button";
+import { CampFlyerPreview } from "@/components/sections/CampFlyerPreview";
 import { YOUTH_SPORTS_PERFORMANCE_CAMP } from "@/lib/site-content";
-import Image from "next/image";
 
 const registerLinkClass =
   "inline-flex items-center justify-center gap-2 px-7 py-3 text-xs font-semibold uppercase tracking-[0.18em] duration-200 ease-out transition-[transform,box-shadow,filter,border-color,color,background-color] will-change-transform hover:scale-[1.03] active:scale-[0.99] motion-reduce:transform-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dsp-blue sm:text-sm bg-dsp-blue text-dsp-bg shadow-[0_0_32px_rgba(0,212,255,0.42)] hover:shadow-[0_0_44px_rgba(0,212,255,0.55)] hover:brightness-105 active:brightness-95 clip-path-button";
@@ -66,17 +66,14 @@ export function CampAnnouncement() {
 
           <div className="flex justify-center lg:col-span-5 lg:justify-end">
             <figure className="w-full max-w-[min(280px,88vw)]">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-sm border border-white/12 bg-dsp-surface/60 shadow-[0_0_40px_rgba(0,212,255,0.08)]">
-                <Image
-                  src={camp.flyerImageSrc}
-                  alt={camp.flyerImageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 280px, 88vw"
-                  className="object-cover object-top"
-                />
-              </div>
+              <CampFlyerPreview
+                src={camp.flyerImageSrc}
+                alt={camp.flyerImageAlt}
+                downloadFilename={camp.flyerDownloadFilename}
+              />
               <figcaption className="mt-2 text-center text-[11px] leading-snug text-white/45">
-                Flyer preview — full camp details are in the text beside this image.
+                Click the flyer to view full size or download. Full camp details are in the
+                text beside this image.
               </figcaption>
             </figure>
           </div>
