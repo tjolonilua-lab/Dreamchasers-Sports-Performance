@@ -74,9 +74,10 @@ function normalizeInstagramPermalink(url: string): string {
   }
 }
 
-/** Default embed when no `NEXT_PUBLIC_INSTAGRAM_POST_URLS` (carousel-friendly permalink; embed shows full post). */
+/** Default embed when no `NEXT_PUBLIC_INSTAGRAM_POST_URLS` (feed or env picks). */
 const DEFAULT_INSTAGRAM_POST_PERMALINKS = [
-  "https://www.instagram.com/p/DF_cqGmOpEA/",
+  "https://www.instagram.com/reel/DXzxQcVBt1y/",
+  "https://www.instagram.com/reel/DSBROMGEddK/",
 ];
 
 export function parseInstagramEmbedUrls(): string[] {

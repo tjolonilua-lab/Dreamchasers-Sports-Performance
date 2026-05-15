@@ -34,11 +34,9 @@ export function FilmJourney() {
             From youth ball to the NFL
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/58">
-            Parents can match age-appropriate inspiration — younger athletes start with the
-            Sticka4-era uploads from the late 2000s (including the original{" "}
-            <span className="text-white/92">“Sewo Olonilua #4”</span>
-            ), while older athletes unlock recruiting tape, TCU film room staples, and pro
-            chapters.
+            Sewo&apos;s film tells the full climb—early reps and raw athleticism, Friday-night
+            confidence, Power Five patience and violence, then pro-level execution. Use the
+            stages below to jump to the chapter that fits where you are today.
           </p>
         </header>
 
