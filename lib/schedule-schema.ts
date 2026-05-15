@@ -1,10 +1,14 @@
 import { trainingInterestValues } from "@/lib/booking-schema";
 import { z } from "zod";
 
-const emptyToUndefined = z
+/** Optional copy — empty or omitted becomes `undefined` after parse (safe for JSON bodies that drop undefined keys). */
+export const scheduleOptionalNotes = z
   .string()
-  .trim()
-  .transform((s) => s || undefined);
+  .optional()
+  .transform((s) => {
+    const t = (s ?? "").trim();
+    return t === "" ? undefined : t;
+  });
 
 export const scheduleSchema = z.object({
   athleteName: z.string().trim().min(1, "Athlete name is required"),
@@ -23,7 +27,7 @@ export const scheduleSchema = z.object({
       /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/,
       "Pick a valid date and start time",
     ),
-  notes: emptyToUndefined,
+  notes: scheduleOptionalNotes,
 });
 
 export type SchedulePayload = z.infer<typeof scheduleSchema>;
