@@ -170,7 +170,7 @@ export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
   },
   {
     youtubeId: "XsWgFPTcjyA",
-    cardTitle: "Kingwood UTR spotlight",
+    cardTitle: "Slow Feet Don't Eat",
     tag: "High School",
     description:
       "Under-the-radar feature — Kingwood High reps with two-way pop before the full recruiting spotlight.",
