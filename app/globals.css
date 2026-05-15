@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --dsp-bg: #04070f;
+  --dsp-navy: #0a1628;
+  --dsp-surface: #0d1729;
+  --dsp-blue: #00d4ff;
+  --dsp-blue-deep: #0095c7;
+}
+
+@theme inline {
+  --color-dsp-bg: var(--dsp-bg);
+  --color-dsp-navy: var(--dsp-navy);
+  --color-dsp-surface: var(--dsp-surface);
+  --color-dsp-blue: var(--dsp-blue);
+  --color-dsp-blue-deep: var(--dsp-blue-deep);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+}
+
+body {
+  background-color: var(--dsp-bg);
+  color: #f4f7fb;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif;
+}
+
+.dsp-grid-mask {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.055) 1px,
+    transparent 1px
+  );
+  background-size: 14px 14px;
+}
+
+.dsp-glow {
+  background:
+    radial-gradient(
+      closest-side,
+      rgba(0, 212, 255, 0.42),
+      transparent 70%
+    ),
+    radial-gradient(
+      closest-side,
+      rgba(0, 149, 255, 0.14),
+      transparent 65%
+    );
+  filter: blur(46px);
+}
+
+.dsp-smoke {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.07),
+    transparent 62%
+  );
+  filter: blur(28px);
+}
+
+.clip-path-button {
+  clip-path: polygon(8% 0, 100% 0, 100% 72%, 92% 100%, 0 100%, 0 28%);
+}
+
+.clip-path-card {
+  clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+}
