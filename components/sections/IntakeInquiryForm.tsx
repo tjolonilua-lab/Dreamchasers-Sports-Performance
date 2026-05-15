@@ -100,7 +100,7 @@ export function IntakeInquiryForm() {
 
   return (
     <form
-      className="space-y-6 rounded-sm border border-white/10 bg-dsp-surface/50 p-6 shadow-[0_0_40px_rgba(0,0,0,0.35)] sm:p-8"
+      className="space-y-6 rounded-2xl border border-white/[0.07] bg-gradient-to-br from-dsp-surface/55 via-dsp-bg/70 to-dsp-bg p-6 shadow-[0_28px_64px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.05] sm:p-8"
       onSubmit={(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         void handleSubmit(new FormData(e.currentTarget));

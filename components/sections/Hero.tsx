@@ -1,6 +1,7 @@
 import { BRAND_MONOGRAM_SRC } from "@/lib/brand-assets";
 import { ButtonLink } from "@/components/ui/Button";
 import { FallbackImg } from "@/components/ui/FallbackImg";
+import { SITE_PHOTO_ASSETS } from "@/lib/site-images";
 import Image from "next/image";
 
 const credibility = [
@@ -9,18 +10,15 @@ const credibility = [
   "Youth Performance Coach",
 ];
 
-/** Add `public/images/sewo-hero-cutout.png` (transparent PNG/WebP) when ready. */
-const HERO_IMAGE = "/images/sewo-hero-cutout.png";
-
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-16 pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+    <section className="relative overflow-hidden pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-12">
       <div
-        className="dsp-grid-mask pointer-events-none absolute inset-0 opacity-[0.35]"
+        className="dsp-grid-mask pointer-events-none absolute inset-0 opacity-[0.28]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute left-1/2 top-[42%] z-0 w-[min(92vw,560px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.045] sm:top-1/2 sm:opacity-[0.06]"
+        className="pointer-events-none absolute left-1/2 top-[46%] z-0 w-[min(92vw,560px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] sm:top-1/2 sm:opacity-[0.065]"
         aria-hidden
       >
         <Image
@@ -32,7 +30,7 @@ export function Hero() {
         />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        className="pointer-events-none absolute inset-0 opacity-[0.055]"
         aria-hidden
       >
         <svg viewBox="0 0 800 800" className="h-full w-full text-white">
@@ -44,31 +42,37 @@ export function Hero() {
         </svg>
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        <div className="relative z-10 lg:col-span-6">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.38em] text-dsp-blue">
+      {/* Cyan wash behind athlete column */}
+      <div
+        className="pointer-events-none absolute right-[-18%] top-[18%] z-0 h-[min(120vw,780px)] w-[min(120vw,780px)] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,212,255,0.22)_0%,rgba(0,149,199,0.08)_38%,transparent_68%)] blur-3xl sm:right-[-12%]"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 sm:gap-10 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8">
+        <div className="relative z-10 lg:col-span-5">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.34em] text-dsp-blue">
             Dreamchasers Sports Performance
           </p>
-          <h1 className="font-display text-[clamp(2.75rem,8vw,4.75rem)] uppercase leading-[0.95] tracking-[0.04em] text-white drop-shadow-[0_0_40px_rgba(0,212,255,0.12)]">
+          <h1 className="dsp-display-heading font-display text-[clamp(2.85rem,8.5vw,5.35rem)] uppercase leading-[0.92] tracking-[0.022em] text-white drop-shadow-[0_0_48px_rgba(0,212,255,0.14)]">
             Train With a Former NFL Athlete
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-            Speed, strength, agility, and confidence training for young athletes
-            ready to level up.
+          <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-white/82">
+            Speed, strength, agility, and confidence training for young athletes ready to
+            level up.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <ButtonLink href="#book">Book a Session</ButtonLink>
             <ButtonLink href="#programs" variant="outline">
               View Programs
             </ButtonLink>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-2">
+          <div className="mt-8 flex flex-wrap gap-2">
             {credibility.map((tag) => (
               <span
                 key={tag}
-                className="rounded-sm border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur-sm"
+                className="rounded-sm border border-white/12 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm"
               >
                 {tag}
               </span>
@@ -76,31 +80,24 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative z-10 flex justify-center lg:col-span-6 lg:justify-end">
-          <div className="relative w-full max-w-md lg:max-w-none">
+        <div className="relative z-10 flex justify-center lg:col-span-7 lg:-mr-6 lg:justify-end xl:-mr-12">
+          <div className="relative w-full max-w-[min(94vw,620px)] lg:max-w-[min(118%,640px)] lg:translate-x-2">
             <div
-              className="dsp-glow pointer-events-none absolute left-1/2 top-1/2 h-[min(90vw,420px)] w-[min(90vw,420px)] -translate-x-1/2 -translate-y-1/2"
+              className="dsp-glow pointer-events-none absolute left-[56%] top-[48%] z-0 h-[min(118vw,620px)] w-[min(118vw,620px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.48]"
               aria-hidden
             />
             <div
-              className="dsp-smoke pointer-events-none absolute inset-6 rounded-full"
+              className="pointer-events-none absolute left-[52%] top-[50%] z-0 h-[min(100vw,520px)] w-[min(100vw,520px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.35)_0%,rgba(0,80,120,0.12)_42%,transparent_70%)] blur-2xl opacity-80"
               aria-hidden
             />
 
-            <figure className="relative mx-auto aspect-[4/5] w-full max-w-[420px] lg:max-w-[460px]">
-              <div className="clip-path-card absolute inset-0 rounded-sm bg-gradient-to-br from-dsp-navy via-dsp-surface to-dsp-bg ring-1 ring-white/10" />
-              <div className="relative flex h-full w-full items-end justify-center p-4 pt-10">
-                <div className="relative z-10 flex h-full min-h-[280px] w-full flex-col items-center justify-end sm:min-h-[340px]">
-                  <div className="relative h-[85%] w-full max-w-[380px]">
-                    <FallbackImg
-                      src={HERO_IMAGE}
-                      alt="Sewo Olonilua — performance coach"
-                      className="h-full w-full object-contain object-bottom drop-shadow-[0_12px_48px_rgba(0,212,255,0.22)]"
-                      fallback={<HeroFallbackSlot />}
-                    />
-                  </div>
-                </div>
-              </div>
+            <figure className="relative mx-auto aspect-[4/5] w-full max-w-[460px] overflow-visible sm:max-w-[520px] lg:max-w-none">
+              <FallbackImg
+                src={SITE_PHOTO_ASSETS.heroCowboysGame}
+                alt="Sewo Olonilua carries the football in a Dallas Cowboys game"
+                className="dsp-hero-photo-mask dsp-hero-photo-motion h-full w-full object-cover object-[center_26%]"
+                fallback={<HeroFallbackSlot />}
+              />
             </figure>
           </div>
         </div>
@@ -111,14 +108,14 @@ export function Hero() {
 
 function HeroFallbackSlot() {
   return (
-    <div className="pointer-events-none flex h-full min-h-[240px] w-full flex-col items-center justify-center gap-3 rounded-sm border border-dashed border-white/20 bg-white/[0.03] px-6 text-center sm:gap-4 sm:min-h-[300px]">
+    <div className="dsp-hero-photo-mask pointer-events-none flex h-full min-h-[240px] w-full flex-col items-center justify-center gap-3 px-6 text-center sm:gap-4 sm:min-h-[300px]">
       <span className="font-display text-3xl uppercase tracking-[0.2em] text-white/35">
         Photo slot
       </span>
       <span className="max-w-[14rem] text-xs uppercase tracking-[0.22em] text-white/45">
-        Drop a transparent cutout at{" "}
+        Photo missing — add{" "}
         <code className="rounded bg-white/10 px-1 py-0.5 text-[10px] tracking-normal text-dsp-blue">
-          public/images/sewo-hero-cutout.png
+          public/images/sewo-cowboys-game.png
         </code>
       </span>
     </div>

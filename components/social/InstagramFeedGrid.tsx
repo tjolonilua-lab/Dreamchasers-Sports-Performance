@@ -2,12 +2,14 @@ import type { IgFeedItem } from "@/lib/instagram-feed";
 
 type Props = {
   items: IgFeedItem[];
+  /** Applied to the grid wrapper (e.g. larger gaps for hero-style layouts). */
+  className?: string;
 };
 
 /** Thumbnail grid — opens Instagram on click (Graph tokens cannot safely inline-play reels here). */
-export function InstagramFeedGrid({ items }: Props) {
+export function InstagramFeedGrid({ items, className = "" }: Props) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${className}`.trim()}>
       {items.map((item) => (
         <a
           key={item.id}

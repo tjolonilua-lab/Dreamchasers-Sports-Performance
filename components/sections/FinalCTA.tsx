@@ -27,7 +27,7 @@ export function FinalCTA() {
           <ButtonLink
             href="#book"
             variant="outline"
-            className="!border-dsp-bg/35 !text-dsp-bg hover:!border-dsp-bg hover:!bg-dsp-bg hover:!text-white"
+            className="!scale-100 border-dsp-bg/40 !bg-dsp-bg/10 !text-dsp-bg shadow-[0_0_24px_rgba(0,40,60,0.35)] hover:!scale-[1.03] hover:!border-dsp-bg hover:!bg-dsp-bg hover:!text-white hover:!shadow-[0_0_36px_rgba(255,255,255,0.22)]"
           >
             Book a Session
           </ButtonLink>

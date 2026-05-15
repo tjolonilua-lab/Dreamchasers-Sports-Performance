@@ -29,25 +29,31 @@ export function PerformancePillars() {
       eyebrow="Training focus"
       title="Performance pillars"
       description="What athletes develop in every session—clear outcomes, elite standards."
-      className="border-y border-white/5 bg-dsp-navy/25"
+      density="tight"
+      animateEnter
+      className="relative overflow-hidden border-y border-white/[0.06] bg-gradient-to-b from-dsp-bg via-dsp-navy/30 to-dsp-bg"
     >
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-dsp-blue/[0.06] to-transparent blur-2xl"
+        aria-hidden
+      />
+      <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {pillars.map((p) => (
           <article
             key={p.title}
-            className="group relative overflow-hidden rounded-sm border border-dsp-blue/35 bg-dsp-surface/60 p-6 shadow-[0_0_0_1px_rgba(0,212,255,0.08)] transition hover:border-dsp-blue hover:shadow-[0_0_32px_rgba(0,212,255,0.18)]"
+            className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur-sm transition duration-200 ease-out hover:-translate-y-1 hover:border-dsp-blue/35 hover:shadow-[0_22px_48px_rgba(0,212,255,0.12)]"
           >
             <div
-              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-dsp-blue/10 blur-2xl transition group-hover:bg-dsp-blue/20"
+              className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-dsp-blue/[0.09] blur-2xl transition duration-300 group-hover:bg-dsp-blue/[0.18]"
               aria-hidden
             />
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded border border-dsp-blue/40 bg-dsp-bg/80 text-dsp-blue [&_svg]:h-7 [&_svg]:w-7">
+            <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-dsp-blue/30 bg-dsp-bg/50 text-dsp-blue shadow-[0_0_24px_rgba(0,212,255,0.12)] [&_svg]:h-7 [&_svg]:w-7">
               <p.icon />
             </div>
-            <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-white">
+            <h3 className="font-display text-2xl uppercase tracking-[0.04em] text-white">
               {p.title}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-white/70">
+            <p className="mt-2 text-sm leading-relaxed text-white/62">
               {p.description}
             </p>
           </article>

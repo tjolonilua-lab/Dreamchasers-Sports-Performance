@@ -26,6 +26,57 @@ body {
   font-family: var(--font-display), ui-sans-serif;
 }
 
+/** Large marketing headings — athletic, slightly tighter than micro-label caps */
+.dsp-display-heading {
+  text-wrap: balance;
+}
+
+@keyframes dsp-hero-drift {
+  0%,
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.085) translate3d(-1.2%, 0.4%, 0);
+  }
+}
+
+.dsp-hero-photo-motion {
+  animation: dsp-hero-drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsp-hero-photo-motion {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+@keyframes dsp-media-ring {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 48px rgba(0, 212, 255, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(0, 212, 255, 0.14),
+      0 0 64px rgba(0, 212, 255, 0.11);
+  }
+}
+
+.dsp-instagram-media-alive {
+  animation: dsp-media-ring 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsp-instagram-media-alive {
+    animation: none;
+  }
+}
+
 .dsp-grid-mask {
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.055) 1px,
@@ -64,4 +115,145 @@ body {
 
 .clip-path-card {
   clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+}
+
+/**
+ * Hero athlete photo — fades into section background (no hard frame).
+ * Intersects two linear masks: soften left edge (toward copy column), lighter bottom blend.
+ */
+.dsp-hero-photo-mask {
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 8%,
+      rgba(0, 0, 0, 0.52) 22%,
+      #000 34%,
+      #000 100%
+    ),
+    linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(0, 0, 0, 0.28) 12%,
+      #000 30%,
+      #000 100%
+    );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 8%,
+      rgba(0, 0, 0, 0.52) 22%,
+      #000 34%,
+      #000 100%
+    ),
+    linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(0, 0, 0, 0.28) 12%,
+      #000 30%,
+      #000 100%
+    );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/** About portrait — soft vignette + blend into section (no hard frame) */
+.dsp-about-photo-mask {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 92% 88% at 50% 46%,
+      #000 52%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  mask-image:
+    radial-gradient(
+      ellipse 92% 88% at 50% 46%,
+      #000 52%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/** Softer chrome around Instagram oEmbed — reads native inside DSP surfaces. */
+.dsp-instagram-embed-host {
+  border-radius: 6px;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 212, 255, 0.06),
+    rgba(255, 255, 255, 0.02) 45%,
+    transparent 70%
+  );
+  padding: 1px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+.dsp-instagram-embed-host > div {
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--dsp-bg);
+}
+
+/** Schedule form — react-day-picker tuned for DSP dark theme */
+.dsp-schedule-picker .rdp-root {
+  --rdp-accent-color: var(--dsp-blue);
+  --rdp-accent-background-color: rgba(0, 212, 255, 0.14);
+  --rdp-day_button-border-radius: 8px;
+  --rdp-day_button-border: 2px solid transparent;
+  --rdp-selected-border: 2px solid rgba(0, 212, 255, 0.85);
+  --rdp-today-color: var(--dsp-blue);
+  margin: 0;
+}
+
+.dsp-schedule-picker .rdp-month_caption {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: rgba(244, 247, 251, 0.92);
+}
+
+.dsp-schedule-picker .rdp-weekday {
+  opacity: 0.48;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dsp-schedule-picker .rdp-day_button {
+  color: rgba(244, 247, 251, 0.92);
+}
+
+.dsp-schedule-picker .rdp-selected .rdp-day_button {
+  background-color: var(--dsp-blue);
+  color: var(--dsp-bg);
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.dsp-schedule-picker .rdp-selected {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.dsp-schedule-picker .rdp-button_previous,
+.dsp-schedule-picker .rdp-button_next {
+  border-radius: 8px;
+  color: rgba(244, 247, 251, 0.85);
+}
+
+.dsp-schedule-picker .rdp-button_previous:hover,
+.dsp-schedule-picker .rdp-button_next:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--dsp-blue);
 }

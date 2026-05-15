@@ -6,6 +6,7 @@ type Props = {
   title: string;
   /** First player in a tab loads eagerly; others defer until near viewport */
   priority?: boolean;
+  className?: string;
 };
 
 function isAllowedHudlEmbedUrl(raw: string): boolean {
@@ -26,7 +27,12 @@ function isAllowedHudlEmbedUrl(raw: string): boolean {
 /**
  * Hudl highlight embed — paste the iframe `src` from Hudl Share → Embed (HTTPS only).
  */
-export function HudlEmbed({ embedUrl, title, priority }: Props) {
+export function HudlEmbed({
+  embedUrl,
+  title,
+  priority,
+  className = "",
+}: Props) {
   const ok = isAllowedHudlEmbedUrl(embedUrl);
 
   if (!ok) {
@@ -44,7 +50,9 @@ export function HudlEmbed({ embedUrl, title, priority }: Props) {
   }
 
   return (
-    <div className="aspect-video w-full overflow-hidden rounded-sm bg-black shadow-inner ring-1 ring-white/10">
+    <div
+      className={`aspect-video w-full overflow-hidden rounded-sm bg-black shadow-inner ring-1 ring-white/10 ${className}`}
+    >
       <iframe
         title={title}
         src={embedUrl.trim()}

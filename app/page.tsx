@@ -1,6 +1,8 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { AngledDivider } from "@/components/ui/AngledDivider";
+import { SectionBreather } from "@/components/ui/SectionBreather";
 import { AboutSewo } from "@/components/sections/AboutSewo";
+import { AthleteOffersProof } from "@/components/sections/AthleteOffersProof";
 import { BookingSection } from "@/components/sections/BookingSection";
 import { FilmJourney } from "@/components/sections/FilmJourney";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -17,10 +19,14 @@ export default function Home() {
         <Hero />
         <AngledDivider />
         <PerformancePillars />
+        <SectionBreather />
         <Programs />
+        <AngledDivider flip />
         <AboutSewo />
         <FilmJourney />
         <InstagramTraining />
+        <SectionBreather />
+        <AthleteOffersProof />
         <BookingSection />
         <FinalCTA />
       </main>

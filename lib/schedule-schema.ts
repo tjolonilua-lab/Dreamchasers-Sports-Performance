@@ -15,12 +15,14 @@ export const scheduleSchema = z.object({
   sport: z.string().trim().min(1, "Sport is required"),
   sessionType: z.enum(trainingInterestValues),
   timezone: z.string().trim().min(1, "Select a timezone"),
-  preferredSlot1: z
+  preferredSlot: z
     .string()
     .trim()
-    .min(1, "Choose your first preferred date & time"),
-  preferredSlot2: emptyToUndefined,
-  preferredSlot3: emptyToUndefined,
+    .min(1, "Pick a date and start time")
+    .regex(
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/,
+      "Pick a valid date and start time",
+    ),
   notes: emptyToUndefined,
 });
 

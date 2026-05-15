@@ -5,8 +5,9 @@
  *   Set `NEXT_PUBLIC_INSTAGRAM_POST_URLS` for extra/manual picks (comma-separated, max 4).
  *   If unset, the site embeds a default flagship post (`DEFAULT_INSTAGRAM_POST_PERMALINKS` in code).
  *
- * YouTube channel browse link:
- *   Defaults to the Sticka4 youth archive. Override with `NEXT_PUBLIC_YOUTUBE_CHANNEL_URL`.
+ * Athlete offer / commitment proof (homepage grid):
+ *   Curate `ATHLETE_OFFER_PROOF_POSTS` with Instagram permalinks, a short caption excerpt, and optional
+ *   `outcome` badge ("offer" or "committed"). Add or reorder objects—no database or CMS required.
  *
  * Film journey picks:
  *   Curated in `FILM_JOURNEY_VIDEOS`: either a YouTube ID (`watch?v=`) **or** a Hudl embed.
@@ -56,9 +57,33 @@ export function parseInstagramEmbedUrls(): string[] {
   return DEFAULT_INSTAGRAM_POST_PERMALINKS.map(normalizeInstagramPermalink);
 }
 
-export const youtubeChannelUrl =
-  process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_URL ??
-  "https://www.youtube.com/@Sticka4/videos";
+/** Instagram-sourced recruiting proof row for the homepage offers grid. */
+export type AthleteOfferOutcome =
+  | { kind: "offer"; school: string }
+  | { kind: "committed"; school: string };
+
+export type AthleteOfferProofPost = {
+  /** Post or reel permalink — embed and visual source of truth. */
+  instagramUrl: string;
+  /** Short excerpt; keep in sync with the post (or a tight paraphrase). */
+  captionExcerpt: string;
+  outcome?: AthleteOfferOutcome;
+};
+
+/**
+ * Low-maintenance proof wall: duplicate an entry, change `instagramUrl`, update excerpt/outcome.
+ * Empty array hides the section on the homepage.
+ *
+ * Example entry:
+ * `instagramUrl` from the post, `captionExcerpt` as a short line, optional `outcome: { kind: "offer" | "committed", school: "..." }`.
+ */
+export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
+  {
+    instagramUrl: normalizeInstagramPermalink(DEFAULT_INSTAGRAM_POST_PERMALINKS[0]!),
+    captionExcerpt:
+      "Real reps and real progression from athletes who train here — follow along for offer and signing moments as they post.",
+  },
+];
 
 export const FILM_JOURNEY_BANDS: {
   id: AgeBandId;

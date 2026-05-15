@@ -11,9 +11,11 @@ declare global {
 
 type Props = {
   urls: string[];
+  /** Extra classes on the outer wrapper around embed(s) — site-native chrome. */
+  className?: string;
 };
 
-export function InstagramEmbeds({ urls }: Props) {
+export function InstagramEmbeds({ urls, className = "" }: Props) {
   useEffect(() => {
     window.instgrm?.Embeds.process();
   }, [urls]);
@@ -25,40 +27,46 @@ export function InstagramEmbeds({ urls }: Props) {
   return (
     <>
       <div
-        className={
-          multi
-            ? "grid gap-8 lg:grid-cols-2"
-            : "flex w-full justify-center"
-        }
+        className={`dsp-instagram-embed-host ${className}`.trim()}
       >
-        {urls.map((url) => (
-          <div
-            key={url}
-            className={
-              multi ? "flex justify-center" : "w-full max-w-[min(100%,420px)]"
-            }
-          >
-            <blockquote
-              className="instagram-media !mx-auto !my-0"
-              data-instgrm-permalink={url}
-              data-instgrm-version="14"
-              style={{
-                background: "#FFF",
-                border: 0,
-                borderRadius: "3px",
-                margin: 0,
-                maxWidth: "100%",
-                minWidth: 0,
-                padding: 0,
-                width: "100%",
-              }}
+        <div
+          className={
+            multi
+              ? "grid gap-6 lg:grid-cols-2"
+              : "flex w-full justify-center"
+          }
+        >
+          {urls.map((url) => (
+            <div
+              key={url}
+              className={
+                multi
+                  ? "flex min-w-0 justify-center"
+                  : "w-full min-w-0 max-w-none"
+              }
             >
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                View post on Instagram
-              </a>
-            </blockquote>
-          </div>
-        ))}
+              <blockquote
+                className="instagram-media !mx-auto !my-0 max-w-none border-0 !bg-[var(--dsp-surface)] shadow-none"
+                data-instgrm-permalink={url}
+                data-instgrm-version="14"
+                style={{
+                  background: "var(--dsp-surface)",
+                  border: "none",
+                  borderRadius: "6px",
+                  margin: 0,
+                  maxWidth: "100%",
+                  minWidth: 0,
+                  padding: 0,
+                  width: "100%",
+                }}
+              >
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  View post on Instagram
+                </a>
+              </blockquote>
+            </div>
+          ))}
+        </div>
       </div>
       <Script
         src="https://www.instagram.com/embed.js"

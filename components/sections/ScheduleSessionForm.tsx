@@ -1,5 +1,6 @@
 "use client";
 
+import { PreferredSlotPicker } from "@/components/scheduling/PreferredSlotPicker";
 import { Button } from "@/components/ui/Button";
 import {
   Field,
@@ -44,9 +45,7 @@ export function ScheduleSessionForm() {
       sport: String(formData.get("sport") ?? ""),
       sessionType: String(formData.get("sessionType") ?? ""),
       timezone: String(formData.get("timezone") ?? ""),
-      preferredSlot1: String(formData.get("preferredSlot1") ?? ""),
-      preferredSlot2: String(formData.get("preferredSlot2") ?? ""),
-      preferredSlot3: String(formData.get("preferredSlot3") ?? ""),
+      preferredSlot: String(formData.get("preferredSlot") ?? ""),
       notes: String(formData.get("notes") ?? ""),
     };
 
@@ -106,7 +105,7 @@ export function ScheduleSessionForm() {
 
   if (status === "success") {
     return (
-      <div className="space-y-4 rounded-sm border border-dsp-blue/40 bg-dsp-surface/70 px-6 py-10 shadow-[0_0_40px_rgba(0,212,255,0.12)]">
+      <div className="space-y-4 rounded-2xl border border-dsp-blue/40 bg-gradient-to-br from-dsp-surface/75 to-dsp-bg/90 px-6 py-10 shadow-[0_0_48px_rgba(0,212,255,0.14)] ring-1 ring-dsp-blue/25">
         <div className="text-center">
           <p className="font-display text-3xl uppercase tracking-[0.08em] text-white">
             Request captured
@@ -118,8 +117,8 @@ export function ScheduleSessionForm() {
             </p>
           ) : (
             <p className="mt-3 text-sm leading-relaxed text-white/75">
-              Your preferred times are logged. Once email delivery is configured on the
-              server, confirmations will go out automatically to you and Sewo.
+              Your preferred session time is logged. Once email delivery is configured on
+              the server, confirmations will go out automatically to you and Sewo.
             </p>
           )}
         </div>
@@ -134,14 +133,14 @@ export function ScheduleSessionForm() {
 
   return (
     <form
-      className="space-y-6 rounded-sm border border-white/10 bg-dsp-surface/50 p-6 shadow-[0_0_40px_rgba(0,0,0,0.35)] sm:p-8"
+      className="space-y-6 rounded-2xl border border-white/[0.07] bg-gradient-to-br from-dsp-surface/55 via-dsp-bg/70 to-dsp-bg p-6 shadow-[0_28px_64px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.05] sm:p-8"
       onSubmit={(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         void handleSubmit(new FormData(e.currentTarget));
       }}
     >
       <p className="text-sm leading-relaxed text-white/65">
-        Pick up to three date/time options. We&apos;ll confirm what works against Sewo&apos;s
+        Choose one preferred session start time. We&apos;ll confirm against Sewo&apos;s
         calendar and training locations.
       </p>
 
@@ -219,25 +218,7 @@ export function ScheduleSessionForm() {
         ))}
       </SelectField>
 
-      <Field
-        label="Preferred slot 1 (date & time)"
-        name="preferredSlot1"
-        type="datetime-local"
-        required
-        error={errors.preferredSlot1}
-      />
-      <Field
-        label="Preferred slot 2 (optional)"
-        name="preferredSlot2"
-        type="datetime-local"
-        error={errors.preferredSlot2}
-      />
-      <Field
-        label="Preferred slot 3 (optional)"
-        name="preferredSlot3"
-        type="datetime-local"
-        error={errors.preferredSlot3}
-      />
+      <PreferredSlotPicker error={errors.preferredSlot} />
 
       <TextAreaField
         label="Notes / location preferences"

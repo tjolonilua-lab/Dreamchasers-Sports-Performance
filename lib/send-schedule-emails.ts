@@ -1,5 +1,6 @@
 import { SEWO_NOTIFICATION_EMAIL } from "@/lib/contact";
 import type { SchedulePayload } from "@/lib/schedule-schema";
+import { format, parse } from "date-fns";
 import { Resend } from "resend";
 
 function escapeHtml(text: string): string {
@@ -14,6 +15,15 @@ function escapeHtml(text: string): string {
 function row(label: string, value: string | undefined) {
   if (!value) return "";
   return `<tr><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;font-weight:600;width:180px;">${escapeHtml(label)}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;">${escapeHtml(value)}</td></tr>`;
+}
+
+function formatPreferredSlot(raw: string): string {
+  try {
+    const d = parse(raw, "yyyy-MM-dd'T'HH:mm", new Date());
+    return format(d, "EEEE, MMMM d, yyyy 'at' h:mm a");
+  } catch {
+    return raw;
+  }
 }
 
 export type EmailSendResult =
@@ -33,11 +43,10 @@ export async function sendScheduleEmails(
 
   const resend = new Resend(apiKey);
 
-  const slotsHtml = [
-    row("Preferred slot 1", data.preferredSlot1),
-    row("Preferred slot 2", data.preferredSlot2),
-    row("Preferred slot 3", data.preferredSlot3),
-  ].join("");
+  const slotsHtml = row(
+    "Preferred session time",
+    formatPreferredSlot(data.preferredSlot),
+  );
 
   const sewoHtml = `
   <div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111;">
@@ -61,7 +70,7 @@ export async function sendScheduleEmails(
   <div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111;">
     <h2 style="margin:0 0 12px;">Thanks — we received your session request</h2>
     <p style="margin:0 0 16px;color:#374151;">Hi ${escapeHtml(data.parentName)},</p>
-    <p style="margin:0 0 16px;color:#374151;">Dreamchasers Sports Performance got your preferred times for <strong>${escapeHtml(data.athleteName)}</strong>. Sewo will follow up to confirm availability and location.</p>
+    <p style="margin:0 0 16px;color:#374151;">Dreamchasers Sports Performance got your preferred session time for <strong>${escapeHtml(data.athleteName)}</strong>. Sewo will follow up to confirm availability and location.</p>
     <table style="border-collapse:collapse;width:100%;max-width:560px;">
       ${row("Session type", data.sessionType)}
       ${row("Timezone reference", data.timezone)}
