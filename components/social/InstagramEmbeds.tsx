@@ -1,13 +1,7 @@
 "use client";
 
-import Script from "next/script";
+import { processInstagramEmbeds } from "@/lib/instagram-embed";
 import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    instgrm?: { Embeds: { process: () => void } };
-  }
-}
 
 type Props = {
   urls: string[];
@@ -17,7 +11,7 @@ type Props = {
 
 export function InstagramEmbeds({ urls, className = "" }: Props) {
   useEffect(() => {
-    window.instgrm?.Embeds.process();
+    processInstagramEmbeds();
   }, [urls]);
 
   if (!urls.length) return null;
@@ -25,10 +19,9 @@ export function InstagramEmbeds({ urls, className = "" }: Props) {
   const multi = urls.length > 1;
 
   return (
-    <>
-      <div
-        className={`dsp-instagram-embed-host ${className}`.trim()}
-      >
+    <div
+      className={`dsp-instagram-embed-host ${className}`.trim()}
+    >
         <div
           className={
             multi
@@ -67,12 +60,6 @@ export function InstagramEmbeds({ urls, className = "" }: Props) {
             </div>
           ))}
         </div>
-      </div>
-      <Script
-        src="https://www.instagram.com/embed.js"
-        strategy="lazyOnload"
-        onLoad={() => window.instgrm?.Embeds.process()}
-      />
-    </>
+    </div>
   );
 }

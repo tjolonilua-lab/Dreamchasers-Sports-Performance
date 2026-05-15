@@ -1,7 +1,6 @@
+import { HeroAthleteImage } from "@/components/sections/HeroAthleteImage";
 import { BRAND_MONOGRAM_SRC } from "@/lib/brand-assets";
 import { ButtonLink } from "@/components/ui/Button";
-import { FallbackImg } from "@/components/ui/FallbackImg";
-import { SITE_PHOTO_ASSETS } from "@/lib/site-images";
 import Image from "next/image";
 
 const credibility = [
@@ -54,7 +53,7 @@ export function Hero() {
             Dreamchasers Sports Performance
           </p>
           <h1 className="dsp-display-heading font-display text-[clamp(2.85rem,8.5vw,5.35rem)] uppercase leading-[0.92] tracking-[0.022em] text-white drop-shadow-[0_0_48px_rgba(0,212,255,0.14)]">
-            Train With a Former NFL Athlete
+            Train Like An NFL Athlete
           </h1>
           <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-white/82">
             Speed, strength, agility, and confidence training for young athletes ready to
@@ -92,32 +91,11 @@ export function Hero() {
             />
 
             <figure className="relative mx-auto aspect-[4/5] w-full max-w-[460px] overflow-visible sm:max-w-[520px] lg:max-w-none">
-              <FallbackImg
-                src={SITE_PHOTO_ASSETS.heroCowboysGame}
-                alt="Sewo Olonilua carries the football in a Dallas Cowboys game"
-                className="dsp-hero-photo-mask dsp-hero-photo-motion h-full w-full object-cover object-[center_26%]"
-                fallback={<HeroFallbackSlot />}
-              />
+              <HeroAthleteImage />
             </figure>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroFallbackSlot() {
-  return (
-    <div className="dsp-hero-photo-mask pointer-events-none flex h-full min-h-[240px] w-full flex-col items-center justify-center gap-3 px-6 text-center sm:gap-4 sm:min-h-[300px]">
-      <span className="font-display text-3xl uppercase tracking-[0.2em] text-white/35">
-        Photo slot
-      </span>
-      <span className="max-w-[14rem] text-xs uppercase tracking-[0.22em] text-white/45">
-        Photo missing — add{" "}
-        <code className="rounded bg-white/10 px-1 py-0.5 text-[10px] tracking-normal text-dsp-blue">
-          public/images/sewo-cowboys-game.png
-        </code>
-      </span>
-    </div>
   );
 }

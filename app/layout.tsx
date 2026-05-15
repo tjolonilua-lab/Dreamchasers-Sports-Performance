@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
+import { InstagramEmbedScript } from "@/components/social/InstagramEmbedScript";
 import { BRAND_MONOGRAM_SRC } from "@/lib/brand-assets";
+import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,12 +16,42 @@ const display = Bebas_Neue({
   variable: "--font-display",
 });
 
+const siteTitle =
+  "Dreamchasers Sports Performance | Train With a Former NFL Athlete";
+const siteDescription =
+  "Premium speed, strength, agility, and confidence training for youth athletes—led by Sewo Olonilua. Former Dallas Cowboy and TCU standout.";
+
+const metadataBase = getMetadataBase();
+
 export const metadata: Metadata = {
-  title: "Dreamchasers Sports Performance | Train With a Former NFL Athlete",
-  description:
-    "Premium speed, strength, agility, and confidence training for youth athletes—led by Sewo Olonilua. Former Dallas Cowboy and TCU standout.",
+  metadataBase,
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "Dreamchasers Sports Performance",
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: "/images/sewo-cowboys-game.png",
+        alt: "Sewo Olonilua — Dreamchasers Sports Performance",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/sewo-cowboys-game.png"],
+  },
+  // Tab icon: `app/icon.png` (file convention). Apple touch uses the same public asset.
   icons: {
-    icon: [{ url: BRAND_MONOGRAM_SRC, type: "image/png" }],
     apple: BRAND_MONOGRAM_SRC,
   },
 };
@@ -34,7 +66,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${display.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-dsp-bg font-sans text-white">{children}</body>
+      <body className="min-h-full bg-dsp-bg font-sans text-white">
+        {children}
+        <InstagramEmbedScript />
+      </body>
     </html>
   );
 }

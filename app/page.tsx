@@ -10,6 +10,7 @@ import { Hero } from "@/components/sections/Hero";
 import { InstagramTraining } from "@/components/sections/InstagramTraining";
 import { PerformancePillars } from "@/components/sections/PerformancePillars";
 import { Programs } from "@/components/sections/Programs";
+import { TrainingFilmRoom } from "@/components/sections/TrainingFilmRoom";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <PerformancePillars />
         <SectionBreather />
         <Programs />
+        <TrainingFilmRoom />
         <AngledDivider flip />
         <AboutSewo />
         <FilmJourney />

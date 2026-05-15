@@ -205,6 +205,15 @@ body {
   background: var(--dsp-bg);
 }
 
+/**
+ * Offer/commitment cards: keep embed subtree free of overflow clipping so IG oEmbed
+ * can measure and replace the blockquote (global `> div` rule is skipped when the
+ * direct child is the blockquote, not a wrapper div).
+ */
+.dsp-instagram-embed-host--offer-proof {
+  min-height: 420px;
+}
+
 /** Schedule form — react-day-picker tuned for DSP dark theme */
 .dsp-schedule-picker .rdp-root {
   --rdp-accent-color: var(--dsp-blue);

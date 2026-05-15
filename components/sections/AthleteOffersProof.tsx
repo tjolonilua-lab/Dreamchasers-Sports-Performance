@@ -13,9 +13,8 @@ export function AthleteOffersProof() {
       title="Proof on the Field. Offers Off It."
       description="Real athletes. Real results. See the moments it happens."
       titleUppercase={false}
-      animateEnter
       density="default"
-      className="relative overflow-hidden border-y border-white/[0.06] bg-gradient-to-b from-dsp-bg via-dsp-navy/35 to-dsp-bg"
+      className="relative border-y border-white/[0.06] bg-gradient-to-b from-dsp-bg via-dsp-navy/35 to-dsp-bg"
     >
       <div
         className="pointer-events-none absolute left-1/2 top-0 z-0 h-64 w-[min(100%,720px)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.08)_0%,transparent_65%)] blur-2xl"

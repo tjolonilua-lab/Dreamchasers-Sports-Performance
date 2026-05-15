@@ -9,6 +9,9 @@
  *   Curate `ATHLETE_OFFER_PROOF_POSTS` with Instagram permalinks, a short caption excerpt, and optional
  *   `outcome` badge ("offer" or "committed"). Add or reorder objects—no database or CMS required.
  *
+ * Training film room (homepage teaser grid):
+ *   Curate `TRAINING_FILM_ROOM_CLIPS` — `source: "youtube"` or `source: "hudl"` (HTTPS embed from Share → Embed), card titles, modal copy, optional `tag`.
+ *
  * Film journey picks:
  *   Curated in `FILM_JOURNEY_VIDEOS`: either a YouTube ID (`watch?v=`) **or** a Hudl embed.
  *   For Hudl, use `hudlEmbedUrl` (iframe `src` from Share → Embed, HTTPS). Optionally set
@@ -79,11 +82,75 @@ export type AthleteOfferProofPost = {
  */
 export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
   {
-    instagramUrl: normalizeInstagramPermalink(
-      "https://www.instagram.com/p/DFOMbbZPUFa/?igsh=MWgyaG5tMzVjOG52bA==",
-    ),
+    instagramUrl: "https://www.instagram.com/p/DFOMbbZPUFa/",
     captionExcerpt:
-      "Offer and commitment moment from the Dreamchasers grid — tap through for the full story on Instagram.",
+      "Elevating the next generation — celebrating young athletes putting in the work (#DawgWork, Dream Chasers Only).",
+  },
+];
+
+/** Curated training-room clips — YouTube or Hudl embed (Share → Embed URL, HTTPS). */
+export type TrainingFilmTag = "Youth" | "High School" | "Advanced";
+
+export type TrainingFilmRoomClip =
+  | {
+      source: "youtube";
+      youtubeId: string;
+      cardTitle: string;
+      description: string;
+      tag?: TrainingFilmTag;
+    }
+  | {
+      source: "hudl";
+      hudlEmbedUrl: string;
+      hudlPageUrl?: string;
+      cardTitle: string;
+      description: string;
+      tag?: TrainingFilmTag;
+    };
+
+export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
+  {
+    source: "youtube",
+    youtubeId: "GAheeHgZ4XM",
+    cardTitle: "Footwork + leverage",
+    tag: "Advanced",
+    description:
+      "College-era footwork and leverage — tempo and balance you can mirror in your own sessions.",
+  },
+  {
+    source: "youtube",
+    youtubeId: "R7fHykrgP6Q",
+    cardTitle: "Pro footwork tempo",
+    tag: "Advanced",
+    description:
+      "Combine-style detail: crisp steps and violent intent without wasted motion.",
+  },
+  {
+    source: "youtube",
+    youtubeId: "tNwL3ksEax8",
+    cardTitle: "Burst under control",
+    tag: "Youth",
+    description:
+      "Middle-school movement quality — speed with control so young athletes build clean habits early.",
+  },
+  {
+    source: "youtube",
+    youtubeId: "k9ft_V4kaNY",
+    cardTitle: "Accelerate in space",
+    tag: "High School",
+    description:
+      "Early high school burst and body control — translating athleticism into confident Friday-night reps.",
+  },
+  {
+    source: "hudl",
+    hudlEmbedUrl:
+      "https://www.hudl.com/embed/video/3/2606556/5721c7efbd746d007c66505a",
+    hudlPageUrl:
+      "https://www.hudl.com/video/3/2606556/5721c7efbd746d007c66505a",
+    cardTitle: "High school combine",
+    tag: "High School",
+    description:
+      "Testing numbers and movement from the recruiting-era combine — full session on Hudl.",
   },
 ];
 
