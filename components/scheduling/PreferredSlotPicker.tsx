@@ -59,7 +59,7 @@ export function PreferredSlotPicker({ error }: PreferredSlotPickerProps) {
         Preferred session time
       </label>
       <p className="mt-2 text-xs leading-relaxed text-white/45">
-        Choose a date on the calendar, then set your preferred start time. Everything stays click-driven — no typing dates manually.
+        Choose a date on the calendar, then set your preferred start time.
       </p>
 
       <div className="dsp-schedule-picker mt-4 flex justify-center sm:justify-start">

@@ -3,6 +3,7 @@
 import {
   type ReactNode,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -19,6 +20,18 @@ export function RevealOnScroll({ children, className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
+  /** If the block is already on-screen after layout, show it without waiting on IO timing. */
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const vh = typeof window !== "undefined" ? window.innerHeight : 0;
+    const margin = vh * 0.06;
+    const intersects =
+      rect.bottom > margin && rect.top < vh - margin;
+    if (intersects) setVisible(true);
+  }, []);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -30,7 +43,7 @@ export function RevealOnScroll({ children, className = "" }: Props) {
           observer.disconnect();
         }
       },
-      { threshold: 0.06, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px 12% 0px" },
     );
 
     observer.observe(el);
