@@ -10,7 +10,7 @@
  *   `outcome` badge ("offer" or "committed"). Add or reorder objects—no database or CMS required.
  *
  * Training film room (homepage teaser grid):
- *   Curate `TRAINING_FILM_ROOM_CLIPS` — `source: "youtube"` or `source: "hudl"` (HTTPS embed from Share → Embed), card titles, modal copy, optional `tag`.
+ *   Curate `TRAINING_FILM_ROOM_CLIPS` — YouTube IDs, card titles, modal copy, optional `tag`.
  *
  * Film journey picks:
  *   Curated in `FILM_JOURNEY_VIDEOS`: either a YouTube ID (`watch?v=`) **or** a Hudl embed.
@@ -29,6 +29,36 @@ export const instagramUsername = (
 export const instagramProfileUrl = `https://www.instagram.com/${instagramUsername}/`;
 
 export const instagramReelsUrl = `https://www.instagram.com/${instagramUsername}/reels/`;
+
+/**
+ * Homepage youth camp promotion — dates and copy are centralized for easy updates.
+ * Year is explicit in displayed strings so the window stays unambiguous across seasons.
+ */
+export const YOUTH_SPORTS_PERFORMANCE_CAMP = {
+  title: "Youth Sports Performance Camp",
+  programLengthLabel: "5-week program",
+  year: 2026,
+  dateStart: "June 15",
+  dateEnd: "July 15",
+  scheduleLine: "Mondays & Wednesdays, 7:00 PM",
+  location: "Kingwood Middle School",
+  ageRange: "Ages 6–12",
+  pricingOncePerWeekLabel: "Once per week",
+  pricingOncePerWeek: "$150",
+  pricingTwicePerWeekLabel: "Twice per week",
+  pricingTwicePerWeek: "$250",
+  registerCtaLabel: "Register by phone",
+  registerPhoneDisplay: "281-989-9057",
+  /** E.164 for `tel:` — display string stays human-readable. */
+  registerPhoneTel: "+12819899057",
+  /** Opens homepage booking → General inquiry with Youth Camp pre-selected. */
+  registerInquiryHref: "/?inquiry=youth-camp#book",
+  registerInquiryCtaLabel: "Register via inquiry form",
+  /** Supplementary visual; all critical details are duplicated in text. */
+  flyerImageSrc: "/marketing/youth-camp-flyer.png",
+  flyerImageAlt:
+    "Youth Sports Performance Camp promotional flyer — Kingwood Middle School, summer 2026.",
+} as const;
 
 function normalizeInstagramPermalink(url: string): string {
   const trimmed = url.trim();
@@ -79,6 +109,8 @@ export type AthleteOfferProofPost = {
  *
  * Example entry:
  * `instagramUrl` from the post, `captionExcerpt` as a short line, optional `outcome: { kind: "offer" | "committed", school: "..." }`.
+ *
+ * Use only **public** posts: Instagram oEmbed for private media returns plain `Private media` and embed.js shows a broken-link card.
  */
 export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
   {
@@ -88,29 +120,18 @@ export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
   },
 ];
 
-/** Curated training-room clips — YouTube or Hudl embed (Share → Embed URL, HTTPS). */
-export type TrainingFilmTag = "Youth" | "High School" | "Advanced";
+/** Curated training-room clips (YouTube thumbnails + modal). */
+export type TrainingFilmTag = "Youth" | "High School" | "College" | "Advanced";
 
-export type TrainingFilmRoomClip =
-  | {
-      source: "youtube";
-      youtubeId: string;
-      cardTitle: string;
-      description: string;
-      tag?: TrainingFilmTag;
-    }
-  | {
-      source: "hudl";
-      hudlEmbedUrl: string;
-      hudlPageUrl?: string;
-      cardTitle: string;
-      description: string;
-      tag?: TrainingFilmTag;
-    };
+export type TrainingFilmRoomClip = {
+  youtubeId: string;
+  cardTitle: string;
+  description: string;
+  tag?: TrainingFilmTag;
+};
 
 export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
   {
-    source: "youtube",
     youtubeId: "GAheeHgZ4XM",
     cardTitle: "Footwork + leverage",
     tag: "Advanced",
@@ -118,7 +139,6 @@ export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
       "College-era footwork and leverage — tempo and balance you can mirror in your own sessions.",
   },
   {
-    source: "youtube",
     youtubeId: "R7fHykrgP6Q",
     cardTitle: "Pro footwork tempo",
     tag: "Advanced",
@@ -126,7 +146,6 @@ export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
       "Combine-style detail: crisp steps and violent intent without wasted motion.",
   },
   {
-    source: "youtube",
     youtubeId: "tNwL3ksEax8",
     cardTitle: "Burst under control",
     tag: "Youth",
@@ -134,7 +153,6 @@ export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
       "Middle-school movement quality — speed with control so young athletes build clean habits early.",
   },
   {
-    source: "youtube",
     youtubeId: "k9ft_V4kaNY",
     cardTitle: "Accelerate in space",
     tag: "High School",
@@ -142,15 +160,18 @@ export const TRAINING_FILM_ROOM_CLIPS: TrainingFilmRoomClip[] = [
       "Early high school burst and body control — translating athleticism into confident Friday-night reps.",
   },
   {
-    source: "hudl",
-    hudlEmbedUrl:
-      "https://www.hudl.com/embed/video/3/2606556/5721c7efbd746d007c66505a",
-    hudlPageUrl:
-      "https://www.hudl.com/video/3/2606556/5721c7efbd746d007c66505a",
-    cardTitle: "High school combine",
+    youtubeId: "SIW332SOA8c",
+    cardTitle: "Saturday game speed",
+    tag: "College",
+    description:
+      "Official TCU cut-ups — patience, burst, and finishing in live Horned Frogs reps.",
+  },
+  {
+    youtubeId: "XsWgFPTcjyA",
+    cardTitle: "Kingwood UTR spotlight",
     tag: "High School",
     description:
-      "Testing numbers and movement from the recruiting-era combine — full session on Hudl.",
+      "Under-the-radar feature — Kingwood High reps with two-way pop before the full recruiting spotlight.",
   },
 ];
 

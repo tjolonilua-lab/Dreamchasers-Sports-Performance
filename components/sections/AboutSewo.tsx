@@ -8,6 +8,10 @@ import {
   SEWO_TCU_SEASON_STATS,
   type TcuSeasonStatRow,
 } from "@/lib/sewo-college-stats";
+import {
+  SEWO_NFL_COMBINE_DISPLAY_ROWS,
+  SEWO_NFL_PROSPECT_PROFILE_URL,
+} from "@/lib/sewo-nfl-measurables";
 
 const quickCredibility = [
   "Former Dallas Cowboys player",
@@ -65,23 +69,18 @@ export function AboutSewo() {
       <div className="relative z-[1] grid items-center gap-12 lg:grid-cols-2 lg:gap-12 xl:gap-16">
         <div className="relative min-h-[300px] lg:-ml-2 lg:min-h-[440px] xl:-ml-4">
           <div
-            className="dsp-glow pointer-events-none absolute left-1/2 top-1/2 z-0 h-[min(95vw,520px)] w-[min(95vw,520px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.35]"
+            className="dsp-glow pointer-events-none absolute left-1/2 top-1/2 z-0 h-[min(95vw,520px)] w-[min(95vw,520px)] -translate-x-1/2 -translate-y-1/2 opacity-20"
             aria-hidden
           />
-          <div className="dsp-grid-mask pointer-events-none absolute inset-0 z-[2] opacity-[0.18]" aria-hidden />
-          <div className="relative h-full min-h-[300px] overflow-visible lg:min-h-[440px]">
+          <div className="relative h-full min-h-[300px] overflow-hidden rounded-sm border border-white/10 bg-dsp-surface/15 shadow-[0_22px_56px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.05] lg:min-h-[440px]">
             <FallbackImg
               src={SITE_PHOTO_ASSETS.aboutTcuGame}
               alt="Sewo Olonilua runs with the football for TCU"
-              className="dsp-about-photo-mask relative z-[1] h-full min-h-[300px] w-full object-cover object-[center_38%] lg:min-h-[440px]"
+              className="relative z-[1] h-full min-h-[300px] w-full object-cover object-[center_38%] lg:min-h-[440px]"
               fallback={<AboutFallback />}
             />
             <div
-              className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-tr from-dsp-bg/55 via-transparent to-dsp-blue/[0.12]"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-dsp-bg via-dsp-bg/25 to-transparent opacity-95"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[32%] bg-gradient-to-t from-dsp-bg/70 via-dsp-bg/15 to-transparent"
               aria-hidden
             />
           </div>
@@ -110,6 +109,34 @@ export function AboutSewo() {
               </li>
             ))}
           </ul>
+          <div className="mt-8 rounded-sm border border-white/10 bg-dsp-surface/25 p-5 ring-1 ring-white/[0.04]">
+            <p className="font-display text-[10px] uppercase tracking-[0.28em] text-dsp-blue">
+              NFL Combine measurables
+            </p>
+            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
+              {SEWO_NFL_COMBINE_DISPLAY_ROWS.map((row) => (
+                <div key={row.label} className="min-w-0">
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">
+                    {row.label}
+                  </dt>
+                  <dd className="mt-0.5 tabular-nums text-sm font-medium text-white/80">
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-4 text-[11px] leading-relaxed text-white/45">
+              Figures from the league prospect profile (Combine).{" "}
+              <a
+                href={SEWO_NFL_PROSPECT_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-dsp-blue underline-offset-4 hover:underline"
+              >
+                View on NFL.com
+              </a>
+            </p>
+          </div>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="#book">Book a Session</ButtonLink>
             <ButtonLink href="#film" variant="outline">

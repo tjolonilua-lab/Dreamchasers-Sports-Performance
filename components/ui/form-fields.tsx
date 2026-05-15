@@ -70,6 +70,8 @@ type SelectFieldProps = {
   required?: boolean;
   error?: string;
   placeholder?: string;
+  /** When set, pre-selects a real option (must match an `<option value>`). */
+  initialValue?: string;
   children: ReactNode;
 };
 
@@ -79,6 +81,7 @@ export function SelectField({
   required,
   error,
   placeholder = "Select an option",
+  initialValue,
   children,
 }: SelectFieldProps) {
   const id = name;
@@ -94,7 +97,7 @@ export function SelectField({
         id={id}
         name={name}
         required={required}
-        defaultValue=""
+        defaultValue={initialValue ?? ""}
         className="mt-2 w-full rounded-sm border border-white/15 bg-dsp-bg px-4 py-3 text-sm text-white outline-none ring-dsp-blue/40 focus:border-dsp-blue focus:ring-2"
       >
         <option value="" disabled>

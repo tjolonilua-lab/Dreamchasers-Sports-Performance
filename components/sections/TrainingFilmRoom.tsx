@@ -12,7 +12,7 @@ function youtubeThumbnailUrl(videoId: string) {
 }
 
 function clipKey(clip: TrainingFilmRoomClip) {
-  return clip.source === "youtube" ? clip.youtubeId : clip.hudlEmbedUrl;
+  return clip.youtubeId;
 }
 
 export function TrainingFilmRoom() {
@@ -70,25 +70,13 @@ function FilmRoomCard({
     >
       <div className="overflow-hidden rounded-sm border border-white/10 bg-dsp-surface/40 shadow-[0_0_28px_rgba(0,0,0,0.35)] ring-1 ring-white/5 transition duration-300 group-hover/card:border-dsp-blue/35 group-hover/card:shadow-[0_0_40px_rgba(0,212,255,0.16)]">
         <div className="relative aspect-[9/16] w-full">
-          {clip.source === "youtube" ? (
-            <Image
-              src={youtubeThumbnailUrl(clip.youtubeId)}
-              alt={`${clip.cardTitle} — video thumbnail`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition duration-500 ease-out will-change-transform motion-reduce:transition-none group-hover/card:scale-[1.04] motion-reduce:group-hover/card:scale-100"
-            />
-          ) : (
-            <div
-              className="absolute inset-0 bg-gradient-to-br from-dsp-navy via-dsp-bg to-black transition duration-500 group-hover/card:from-dsp-navy/90"
-              aria-hidden
-            >
-              <div className="absolute inset-0 opacity-[0.12] dsp-grid-mask" />
-              <div className="absolute left-4 top-4 rounded-sm border border-white/15 bg-black/40 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/80">
-                Hudl
-              </div>
-            </div>
-          )}
+          <Image
+            src={youtubeThumbnailUrl(clip.youtubeId)}
+            alt={`${clip.cardTitle} — video thumbnail`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition duration-500 ease-out will-change-transform motion-reduce:transition-none group-hover/card:scale-[1.04] motion-reduce:group-hover/card:scale-100"
+          />
           <div
             className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 transition duration-300 group-hover/card:from-black/90"
             aria-hidden

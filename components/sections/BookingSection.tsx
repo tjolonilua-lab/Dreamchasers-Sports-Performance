@@ -3,13 +3,24 @@
 import { IntakeInquiryForm } from "@/components/sections/IntakeInquiryForm";
 import { ScheduleSessionForm } from "@/components/sections/ScheduleSessionForm";
 import { SectionShell } from "@/components/ui/SectionShell";
+import { trainingInterestValues } from "@/lib/booking-schema";
 import type { ReactNode } from "react";
 import { useState } from "react";
 
 type TabId = "schedule" | "intake";
 
-export function BookingSection() {
-  const [tab, setTab] = useState<TabId>("schedule");
+type TrainingInterest = (typeof trainingInterestValues)[number];
+
+type BookingSectionProps = {
+  /** From `/?inquiry=youth-camp#book` — opens General inquiry with Youth Camp pre-selected. */
+  youthCampInquiry?: boolean;
+};
+
+export function BookingSection({ youthCampInquiry = false }: BookingSectionProps) {
+  const [tab, setTab] = useState<TabId>(() => (youthCampInquiry ? "intake" : "schedule"));
+  const [inquiryDefaultInterest] = useState<TrainingInterest | undefined>(() =>
+    youthCampInquiry ? "Youth Camp" : undefined,
+  );
 
   return (
     <SectionShell
@@ -31,7 +42,11 @@ export function BookingSection() {
           </TabButton>
         </div>
 
-        {tab === "schedule" ? <ScheduleSessionForm /> : <IntakeInquiryForm />}
+        {tab === "schedule" ? (
+          <ScheduleSessionForm />
+        ) : (
+          <IntakeInquiryForm defaultTrainingInterest={inquiryDefaultInterest} />
+        )}
       </div>
     </SectionShell>
   );

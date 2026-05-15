@@ -12,7 +12,11 @@ import { useState } from "react";
 
 type FieldErrors = Record<string, string | undefined>;
 
-export function IntakeInquiryForm() {
+type Props = {
+  defaultTrainingInterest?: (typeof trainingInterestValues)[number];
+};
+
+export function IntakeInquiryForm({ defaultTrainingInterest }: Props) {
   const [pending, setPending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -153,6 +157,7 @@ export function IntakeInquiryForm() {
         name="trainingInterest"
         required
         error={errors.trainingInterest}
+        initialValue={defaultTrainingInterest}
       >
         {trainingInterestValues.map((v) => (
           <option key={v} value={v}>

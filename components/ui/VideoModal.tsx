@@ -1,6 +1,5 @@
 "use client";
 
-import { HudlEmbed } from "@/components/ui/HudlEmbed";
 import type { TrainingFilmRoomClip } from "@/lib/site-content";
 import { useEffect, useId, useRef } from "react";
 
@@ -33,11 +32,7 @@ export function VideoModal({ open, onClose, clip }: Props) {
 
   const title = clip.cardTitle;
   const description = clip.description;
-
-  const youtubeSrc =
-    clip.source === "youtube"
-      ? `https://www.youtube.com/embed/${encodeURIComponent(clip.youtubeId)}?autoplay=1&modestbranding=1&rel=0`
-      : null;
+  const src = `https://www.youtube.com/embed/${encodeURIComponent(clip.youtubeId)}?autoplay=1&modestbranding=1&rel=0`;
 
   return (
     <div
@@ -75,24 +70,15 @@ export function VideoModal({ open, onClose, clip }: Props) {
         </div>
 
         <div className="aspect-video w-full bg-black">
-          {clip.source === "youtube" && youtubeSrc ? (
-            <iframe
-              key={clip.youtubeId}
-              title={title}
-              src={youtubeSrc}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-              className="h-full w-full border-0"
-            />
-          ) : clip.source === "hudl" ? (
-            <HudlEmbed
-              key={clip.hudlEmbedUrl}
-              embedUrl={clip.hudlEmbedUrl}
-              title={title}
-              priority
-            />
-          ) : null}
+          <iframe
+            key={clip.youtubeId}
+            title={title}
+            src={src}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="h-full w-full border-0"
+          />
         </div>
 
         <p

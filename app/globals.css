@@ -164,26 +164,6 @@ body {
   mask-composite: intersect;
 }
 
-/** About portrait — soft vignette + blend into section (no hard frame) */
-.dsp-about-photo-mask {
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse 92% 88% at 50% 46%,
-      #000 52%,
-      transparent 100%
-    ),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  mask-image:
-    radial-gradient(
-      ellipse 92% 88% at 50% 46%,
-      #000 52%,
-      transparent 100%
-    ),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-
 /** Softer chrome around Instagram oEmbed — reads native inside DSP surfaces. */
 .dsp-instagram-embed-host {
   border-radius: 6px;
