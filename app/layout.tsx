@@ -51,9 +51,11 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: ["/images/sewo-cowboys-game.png"],
   },
-  // Tab icon: `app/icon.png` (file convention). Apple touch uses the same public asset.
+  // Explicit `rel="icon"` — layout previously set only `apple`, so `icons.icon` stayed empty
+  // and Next never merged `app/icon.png` into the head; tabs showed no favicon.
   icons: {
-    apple: BRAND_MONOGRAM_SRC,
+    icon: [{ url: BRAND_MONOGRAM_SRC, type: "image/png" }],
+    apple: [{ url: BRAND_MONOGRAM_SRC, type: "image/png", sizes: "180x180" }],
   },
 };
 
