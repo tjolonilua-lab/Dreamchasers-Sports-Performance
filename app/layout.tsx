@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import { BRAND_MONOGRAM_SRC } from "@/lib/brand-assets";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,7 +35,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${display.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-dsp-bg font-sans text-white">{children}</body>
+      <body className="min-h-full bg-dsp-bg font-sans text-white">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
