@@ -12,17 +12,9 @@ import { InstagramTraining } from "@/components/sections/InstagramTraining";
 import { PerformancePillars } from "@/components/sections/PerformancePillars";
 import { Programs } from "@/components/sections/Programs";
 import { TrainingFilmRoom } from "@/components/sections/TrainingFilmRoom";
+import { SectionShell } from "@/components/ui/SectionShell";
 
-type HomeProps = {
-  searchParams?: Promise<{ inquiry?: string | string[] | undefined }>;
-};
-
-export default async function Home({ searchParams }: HomeProps) {
-  const sp = (await searchParams) ?? {};
-  const raw = sp.inquiry;
-  const inquiry = typeof raw === "string" ? raw : raw?.[0];
-  const youthCampInquiry = inquiry === "youth-camp";
-
+export default function Home() {
   return (
     <>
       <SiteHeader />
@@ -40,7 +32,17 @@ export default async function Home({ searchParams }: HomeProps) {
         <InstagramTraining />
         <SectionBreather />
         <AthleteOffersProof />
-        <BookingSection youthCampInquiry={youthCampInquiry} />
+        <SectionShell
+          id="book"
+          eyebrow="Next step"
+          title="Ready to Start Training?"
+          description="Lock in preferred session times (with automatic confirmations when email is configured) or send a broader inquiry—we respond with availability and the best training fit."
+          animateEnter
+          density="default"
+          className="relative overflow-hidden bg-gradient-to-b from-dsp-bg via-dsp-navy/35 to-dsp-bg"
+        >
+          <BookingSection />
+        </SectionShell>
         <FinalCTA />
       </main>
     </>

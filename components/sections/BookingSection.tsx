@@ -1,54 +1,74 @@
 "use client";
 
 import { IntakeInquiryForm } from "@/components/sections/IntakeInquiryForm";
-import { ScheduleSessionForm } from "@/components/sections/ScheduleSessionForm";
-import { SectionShell } from "@/components/ui/SectionShell";
 import { trainingInterestValues } from "@/lib/booking-schema";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
+
+const ScheduleSessionForm = dynamic(
+  () =>
+    import("@/components/sections/ScheduleSessionForm").then(
+      (m) => m.ScheduleSessionForm,
+    ),
+  {
+    loading: () => (
+      <p className="text-sm text-white/55" aria-live="polite">
+        Loading scheduler…
+      </p>
+    ),
+  },
+);
 
 type TabId = "schedule" | "intake";
 
 type TrainingInterest = (typeof trainingInterestValues)[number];
 
-type BookingSectionProps = {
-  /** From `/?inquiry=youth-camp#book` — opens General inquiry with Youth Camp pre-selected. */
-  youthCampInquiry?: boolean;
-};
+/** Reads `?inquiry=youth-camp` on the client without forcing the homepage to be dynamic. */
+function BookingSectionWithSearchParams() {
+  const searchParams = useSearchParams();
+  const youthCampInquiry = searchParams.get("inquiry") === "youth-camp";
+  return <BookingSectionInner youthCampInquiry={youthCampInquiry} />;
+}
 
-export function BookingSection({ youthCampInquiry = false }: BookingSectionProps) {
-  const [tab, setTab] = useState<TabId>(() => (youthCampInquiry ? "intake" : "schedule"));
+export function BookingSection() {
+  return (
+    <Suspense fallback={<BookingSectionInner youthCampInquiry={false} />}>
+      <BookingSectionWithSearchParams />
+    </Suspense>
+  );
+}
+
+function BookingSectionInner({
+  youthCampInquiry,
+}: {
+  youthCampInquiry: boolean;
+}) {
+  const [tab, setTab] = useState<TabId>(() =>
+    youthCampInquiry ? "intake" : "schedule",
+  );
   const [inquiryDefaultInterest] = useState<TrainingInterest | undefined>(() =>
     youthCampInquiry ? "Youth Camp" : undefined,
   );
 
   return (
-    <SectionShell
-      id="book"
-      eyebrow="Next step"
-      title="Ready to Start Training?"
-      description="Lock in preferred session times (with automatic confirmations when email is configured) or send a broader inquiry—we respond with availability and the best training fit."
-      animateEnter
-      density="default"
-      className="relative overflow-hidden bg-gradient-to-b from-dsp-bg via-dsp-navy/35 to-dsp-bg"
-    >
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-8 flex flex-wrap gap-2">
-          <TabButton active={tab === "schedule"} onClick={() => setTab("schedule")}>
-            Schedule a session
-          </TabButton>
-          <TabButton active={tab === "intake"} onClick={() => setTab("intake")}>
-            General inquiry
-          </TabButton>
-        </div>
-
-        {tab === "schedule" ? (
-          <ScheduleSessionForm />
-        ) : (
-          <IntakeInquiryForm defaultTrainingInterest={inquiryDefaultInterest} />
-        )}
+    <div className="mx-auto max-w-3xl">
+      <div className="mb-8 flex flex-wrap gap-2">
+        <TabButton active={tab === "schedule"} onClick={() => setTab("schedule")}>
+          Schedule a session
+        </TabButton>
+        <TabButton active={tab === "intake"} onClick={() => setTab("intake")}>
+          General inquiry
+        </TabButton>
       </div>
-    </SectionShell>
+
+      {tab === "schedule" ? (
+        <ScheduleSessionForm />
+      ) : (
+        <IntakeInquiryForm defaultTrainingInterest={inquiryDefaultInterest} />
+      )}
+    </div>
   );
 }
 

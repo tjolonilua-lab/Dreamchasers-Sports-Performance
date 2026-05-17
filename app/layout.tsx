@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Bebas_Neue, Inter } from "next/font/google";
-import { InstagramEmbedScript } from "@/components/social/InstagramEmbedScript";
 import { BRAND_MONOGRAM_SRC } from "@/lib/brand-assets";
 import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
@@ -71,7 +70,6 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-dsp-bg font-sans text-white">
         {children}
-        <InstagramEmbedScript />
         <Analytics />
       </body>
     </html>

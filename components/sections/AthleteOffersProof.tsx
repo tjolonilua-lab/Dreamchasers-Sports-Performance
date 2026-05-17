@@ -1,3 +1,4 @@
+import { InstagramEmbedScript } from "@/components/social/InstagramEmbedScript";
 import { AthleteOfferProofGrid } from "@/components/social/AthleteOfferProofGrid";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -40,6 +41,7 @@ export function AthleteOffersProof() {
           </ButtonLink>
         </div>
       </div>
+      <InstagramEmbedScript />
     </SectionShell>
   );
 }

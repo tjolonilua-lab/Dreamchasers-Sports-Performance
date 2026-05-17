@@ -1,3 +1,4 @@
+import { InstagramEmbedScript } from "@/components/social/InstagramEmbedScript";
 import { InstagramEmbeds } from "@/components/social/InstagramEmbeds";
 import { InstagramFeedGrid } from "@/components/social/InstagramFeedGrid";
 import { ButtonLink } from "@/components/ui/Button";
@@ -137,6 +138,7 @@ export async function InstagramTraining() {
           </div>
         </div>
       </div>
+      <InstagramEmbedScript />
     </SectionShell>
   );
 }

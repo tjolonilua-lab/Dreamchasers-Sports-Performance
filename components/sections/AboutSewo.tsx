@@ -24,7 +24,7 @@ const accolades: { heading: string; items: string[] }[] = [
   {
     heading: "High school",
     items: [
-      "Kingwood High School — Kingwood / northeast Houston; four-year varsity running back who added defensive snaps at outside linebacker beginning junior year",
+      "Kingwood High School — Kingwood / northeast Houston; four-year varsity running back who added defensive snaps at Safety and Outside Linebacker beginning junior year",
       "Senior season: 1,073 rushing yards (11.4-yard average) and 14 touchdowns — workload that previewed his Power Five ceiling",
       "U.S. Army All-American Bowl participant with national exposure against elite senior talent",
       "Glenn Davis Army Award recipient — recognition tied to the Army All-American pipeline",
@@ -37,7 +37,7 @@ const accolades: { heading: string; items: string[] }[] = [
     items: [
       "Scholarship athlete; appeared in every game as a true freshman (first start in the Liberty Bowl)",
       "Sophomore: 64 carries, 330 yards, 7 touchdowns; 19 receptions for 166 yards; 5 special teams tackles",
-      "Junior: led the team with 135 carries for 635 yards (4.7-yard average)",
+      "Junior: led the team with 135 carries for 635 yards",
       "Cheez-It Bowl Offensive MVP — 194 rushing yards (TCU bowl record)",
       "Senior: 537 rushing yards and team-high 8 rushing touchdowns",
     ],
@@ -47,7 +47,8 @@ const accolades: { heading: string; items: string[] }[] = [
     items: [
       "Invited to the 2020 NFL Scouting Combine",
       "Signed as an undrafted free agent with the Dallas Cowboys (2020–2021)",
-      "Later played with the Houston Roughnecks (XFL), Orlando Guardians (XFL), and Edmonton Elks (CFL)",
+      "Earned starting fullback spot before injuring neck in the 2021 Hall of Fame game",
+      "Had a big 20-yard reception and drew praise from Dez Bryant, Troy Aikman, and Joe Buck for his performance as a playmaker and blocker",
     ],
   },
 ];

@@ -1,6 +1,6 @@
 "use client";
 
-import type { TrainingFilmRoomClip } from "@/lib/site-content";
+import type { TrainingFilmRoomClip } from "@/lib/training-film-room-clips";
 import { useEffect, useId, useRef } from "react";
 
 type Props = {
