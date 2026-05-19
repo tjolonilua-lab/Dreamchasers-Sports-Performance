@@ -1,9 +1,11 @@
 type Props = {
   flip?: boolean;
+  /** Softer fill when entering the story arc (About → Proof). */
+  subtle?: boolean;
   className?: string;
 };
 
-export function AngledDivider({ flip, className = "" }: Props) {
+export function AngledDivider({ flip, subtle, className = "" }: Props) {
   return (
     <div
       className={`pointer-events-none relative -mt-px select-none ${flip ? "rotate-180" : ""} ${className}`}
@@ -16,7 +18,7 @@ export function AngledDivider({ flip, className = "" }: Props) {
       >
         <polygon
           fill="currentColor"
-          fillOpacity={0.78}
+          fillOpacity={subtle ? 0.38 : 0.78}
           points="0,96 0,22 1440,0 1440,96"
         />
       </svg>

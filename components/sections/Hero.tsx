@@ -11,13 +11,13 @@ const credibility = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-12">
+    <section className="dsp-story-hero relative overflow-hidden pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-12">
       <div
         className="dsp-grid-mask pointer-events-none absolute inset-0 opacity-[0.28]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute left-1/2 top-[46%] z-0 w-[min(92vw,560px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] sm:top-1/2 sm:opacity-[0.065]"
+        className="pointer-events-none absolute left-1/2 top-[46%] z-0 w-[min(92vw,560px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.035] blur-[0.5px] sm:top-1/2"
         aria-hidden
       >
         <Image
@@ -43,7 +43,7 @@ export function Hero() {
 
       {/* Cyan wash behind athlete column */}
       <div
-        className="pointer-events-none absolute right-[-18%] top-[18%] z-0 h-[min(120vw,780px)] w-[min(120vw,780px)] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,212,255,0.22)_0%,rgba(0,149,199,0.08)_38%,transparent_68%)] blur-3xl sm:right-[-12%]"
+        className="dsp-story-hero-glow pointer-events-none absolute right-[-18%] top-[18%] z-0 h-[min(120vw,780px)] w-[min(120vw,780px)] rounded-full blur-3xl sm:right-[-12%]"
         aria-hidden
       />
 
@@ -55,7 +55,7 @@ export function Hero() {
           <h1 className="dsp-display-heading font-display text-[clamp(2.85rem,8.5vw,5.35rem)] uppercase leading-[0.92] tracking-[0.022em] text-white drop-shadow-[0_0_48px_rgba(0,212,255,0.14)]">
             Train Like An NFL Athlete
           </h1>
-          <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-white/82">
+          <p className="dsp-story-lead mt-5 max-w-xl text-lg font-medium text-white/82">
             Speed, strength, agility, and confidence training for young athletes ready to
             level up.
           </p>
@@ -82,7 +82,7 @@ export function Hero() {
         <div className="relative z-10 flex justify-center lg:col-span-7 lg:-mr-6 lg:justify-end xl:-mr-12">
           <div className="relative w-full max-w-[min(94vw,620px)] lg:max-w-[min(118%,640px)] lg:translate-x-2">
             <div
-              className="dsp-glow pointer-events-none absolute left-[56%] top-[48%] z-0 h-[min(118vw,620px)] w-[min(118vw,620px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.48]"
+              className="dsp-glow pointer-events-none absolute left-[56%] top-[48%] z-0 h-[min(118vw,620px)] w-[min(118vw,620px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.54]"
               aria-hidden
             />
             <div
@@ -96,6 +96,11 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      <div
+        className="dsp-story-hero-bleed pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 sm:h-36"
+        aria-hidden
+      />
     </section>
   );
 }

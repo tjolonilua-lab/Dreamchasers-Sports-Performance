@@ -18,7 +18,11 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="relative">
+        <div
+          className="dsp-cinematic-spine fixed inset-0 -z-10"
+          aria-hidden
+        />
         <Hero />
         <CampAnnouncement />
         <AngledDivider />
@@ -26,10 +30,20 @@ export default function Home() {
         <SectionBreather />
         <Programs />
         <TrainingFilmRoom />
-        <AngledDivider flip />
-        <AboutSewo />
-        <FilmJourney />
-        <InstagramTraining />
+        <AngledDivider flip subtle />
+        <div className="dsp-story-arc relative">
+          <AboutSewo />
+          <div
+            className="dsp-story-handoff pointer-events-none"
+            aria-hidden
+          />
+          <FilmJourney />
+          <div
+            className="dsp-story-handoff dsp-story-handoff--proof pointer-events-none"
+            aria-hidden
+          />
+          <InstagramTraining />
+        </div>
         <SectionBreather />
         <AthleteOffersProof />
         <SectionShell

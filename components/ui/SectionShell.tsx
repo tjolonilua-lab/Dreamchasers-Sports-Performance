@@ -23,6 +23,8 @@ type Props = {
   animateEnter?: boolean;
   /** When false, keep title casing as written (default heading is uppercase). */
   titleUppercase?: boolean;
+  /** Calmer eyebrow + body rhythm for Hero → About → Proof narrative. */
+  tone?: "default" | "story";
 };
 
 export function SectionShell({
@@ -35,6 +37,7 @@ export function SectionShell({
   density = "default",
   animateEnter = false,
   titleUppercase = true,
+  tone = "default",
 }: Props) {
   const pad = densityPadding[density];
 
@@ -42,7 +45,13 @@ export function SectionShell({
     <>
       <header className="mb-10 max-w-3xl sm:mb-12">
         {eyebrow ? (
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-dsp-blue">
+          <p
+            className={
+              tone === "story"
+                ? "dsp-story-eyebrow mb-3"
+                : "mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-dsp-blue"
+            }
+          >
             {eyebrow}
           </p>
         ) : null}
@@ -54,7 +63,13 @@ export function SectionShell({
           {title}
         </h2>
         {description ? (
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/58">
+          <p
+            className={
+              tone === "story"
+                ? "dsp-story-lead mt-4 max-w-2xl text-base text-white/62"
+                : "mt-4 max-w-2xl text-base leading-relaxed text-white/58"
+            }
+          >
             {description}
           </p>
         ) : null}

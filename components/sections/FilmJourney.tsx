@@ -23,17 +23,17 @@ export function FilmJourney() {
   const picks = useMemo(() => FILM_JOURNEY_VIDEOS[band], [band]);
 
   return (
-    <section id="film" className="relative scroll-mt-24 py-20 sm:py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dsp-blue/30 to-transparent" />
+    <section
+      id="film"
+      className="dsp-story-mid relative scroll-mt-24 bg-transparent py-16 sm:py-20"
+    >
       <RevealOnScroll className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-10 max-w-3xl">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-dsp-blue">
-            Film journey
-          </p>
+          <p className="dsp-story-eyebrow mb-3">Film journey</p>
           <h2 className="dsp-display-heading font-display text-4xl uppercase leading-[0.98] tracking-[0.028em] text-white sm:text-5xl">
             From youth ball to the NFL
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/58">
+          <p className="dsp-story-lead mt-4 max-w-2xl text-base text-white/58">
             Sewo&apos;s film tells the full climb—early reps and raw athleticism, Friday-night
             confidence, Power Five patience and violence, then pro-level execution. Use the
             stages below to jump to the chapter that fits where you are today.

@@ -29,10 +29,11 @@ export async function InstagramTraining() {
       description="Clip-length proof from actual DSP sessions — drills, speed work, group energy, and athlete wins posted weekly."
       density="airy"
       animateEnter
-      className="relative overflow-hidden border-y border-white/[0.06] bg-gradient-to-br from-dsp-bg via-dsp-navy/35 to-dsp-bg"
+      tone="story"
+      className="dsp-story-proof relative overflow-hidden bg-transparent pb-28 sm:pb-32"
     >
       <div
-        className="pointer-events-none absolute -right-20 top-20 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.12)_0%,transparent_62%)] blur-3xl"
+        className="dsp-story-proof-vignette pointer-events-none absolute inset-0 z-0"
         aria-hidden
       />
 
@@ -43,7 +44,7 @@ export async function InstagramTraining() {
           <div className="inline-flex w-fit items-center gap-3 rounded-full border border-dsp-blue/35 bg-dsp-blue/[0.08] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-dsp-blue">
             @{instagramUsername}
           </div>
-          <p className="mt-6 text-base leading-relaxed text-white/78">
+          <p className="dsp-story-lead mt-6 text-base text-white/78">
             Follow along between visits: raw reps, coaching cues, and highlights from
             athletes training here — not polished ads.
           </p>
@@ -63,7 +64,7 @@ export async function InstagramTraining() {
               Watch The Journey
             </ButtonLink>
           </div>
-          <ul className="mt-10 space-y-3 border-l border-white/[0.08] pl-5 text-sm leading-snug text-white/58">
+          <ul className="dsp-story-body mt-10 space-y-3 border-l border-white/[0.08] pl-5 text-sm text-white/58">
             <li>Speed &amp; agility drills you&apos;ll recognize from session floor</li>
             <li>Youth groups and camp dates when enrollment opens</li>
             <li>Before/after energy — accountability posts from athletes who show up</li>
@@ -71,7 +72,7 @@ export async function InstagramTraining() {
         </div>
 
         <div className="order-1 min-h-0 w-full lg:order-2">
-          <div className="dsp-instagram-media-alive relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-dsp-surface/25 via-dsp-bg/55 to-dsp-bg p-4 shadow-[0_32px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.07] sm:p-6">
+          <div className="dsp-proof-media-frame dsp-instagram-media-alive relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl p-4 sm:p-6">
             <div
               className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-tr from-dsp-blue/[0.05] via-transparent to-transparent opacity-80"
               aria-hidden

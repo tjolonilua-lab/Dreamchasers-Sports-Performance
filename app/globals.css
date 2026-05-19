@@ -22,6 +22,247 @@ body {
   color: #f4f7fb;
 }
 
+/**
+ * Cinematic scroll spine — unified navy/black field + faint brand watermark.
+ * Fixed layer behind page content (Hero → About → Proof narrative).
+ */
+.dsp-cinematic-spine {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 55% at 72% 8%,
+      rgba(0, 212, 255, 0.09) 0%,
+      rgba(0, 80, 140, 0.04) 38%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 18% 42%,
+      rgba(72, 40, 140, 0.06) 0%,
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      #020408 0%,
+      var(--dsp-bg) 22%,
+      #03070f 58%,
+      #020306 100%
+    );
+}
+
+.dsp-cinematic-spine::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 4.5rem;
+  width: min(96vw, 680px);
+  aspect-ratio: 1;
+  transform: translateX(-48%);
+  background: url("/images/brand/sewo-monogram.png") center / contain no-repeat;
+  opacity: 0.05;
+  filter: blur(1.5px);
+}
+
+.dsp-cinematic-spine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 42% at 70% 0%,
+    rgba(0, 212, 255, 0.07) 0%,
+    transparent 58%
+  );
+}
+
+/** Hero — highest contrast / brightness in the story arc */
+.dsp-story-hero {
+  z-index: 1;
+}
+
+.dsp-story-hero-bleed {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(4, 7, 15, 0.35) 45%,
+    rgba(4, 7, 15, 0.85) 78%,
+    var(--dsp-bg) 100%
+  );
+}
+
+.dsp-story-hero-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 212, 255, 0.28) 0%,
+    rgba(0, 149, 199, 0.1) 38%,
+    rgba(88, 40, 160, 0.06) 52%,
+    transparent 70%
+  );
+}
+
+/** About — emerges from hero; softened midground */
+.dsp-story-about {
+  z-index: 1;
+}
+
+.dsp-story-about-vignette {
+  background: radial-gradient(
+    ellipse 90% 70% at 28% 40%,
+    rgba(0, 212, 255, 0.05) 0%,
+    transparent 65%
+  );
+}
+
+/** Soft embedded portrait — no hard rectangle */
+.dsp-about-photo-mask {
+  -webkit-mask-image: radial-gradient(
+    ellipse 96% 94% at 50% 40%,
+    #000 58%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 96% 94% at 50% 40%,
+    #000 58%,
+    transparent 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.dsp-about-photo-frame {
+  border: none;
+  background: transparent;
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(0, 212, 255, 0.06);
+}
+
+.dsp-about-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(4, 7, 15, 0.15) 72%,
+    rgba(4, 7, 15, 0.55) 100%
+  );
+}
+
+/** Film journey — same arc, lower contrast (bridge) */
+.dsp-story-mid {
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(3, 6, 12, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+/** Proof — grounded, slightly darker, same palette */
+.dsp-story-proof {
+  z-index: 1;
+}
+
+.dsp-story-proof-vignette {
+  background: radial-gradient(
+    ellipse 80% 60% at 75% 30%,
+    rgba(0, 212, 255, 0.04) 0%,
+    transparent 62%
+  );
+}
+
+.dsp-proof-media-frame {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(
+    145deg,
+    rgba(13, 23, 41, 0.55) 0%,
+    rgba(4, 7, 15, 0.75) 100%
+  );
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.48),
+    0 0 48px rgba(0, 212, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/** Gradient handoffs between story chapters (not hard rules) */
+.dsp-story-handoff {
+  height: 5rem;
+  margin-top: -2.5rem;
+  margin-bottom: -2.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.04) 48%,
+    transparent 100%
+  );
+  opacity: 0.9;
+}
+
+.dsp-story-arc {
+  position: relative;
+  isolation: isolate;
+}
+
+.dsp-story-handoff--proof {
+  height: 4.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.06) 50%,
+    rgba(2, 4, 10, 0.35) 100%
+  );
+}
+
+/** Story typography — calmer, premium body rhythm */
+.dsp-story-eyebrow {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 212, 255, 0.82);
+}
+
+.dsp-story-lead {
+  line-height: 1.75;
+}
+
+.dsp-story-body {
+  line-height: 1.72;
+  color: rgba(244, 247, 251, 0.62);
+}
+
+.dsp-story-divider {
+  position: relative;
+  padding-top: 3rem;
+  margin-top: 3.5rem;
+}
+
+.dsp-story-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.35) 22%,
+    rgba(0, 212, 255, 0.12) 50%,
+    rgba(0, 212, 255, 0.35) 78%,
+    transparent 100%
+  );
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.12);
+}
+
 .font-display {
   font-family: var(--font-display), ui-sans-serif;
 }
@@ -126,9 +367,9 @@ body {
     linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.06) 8%,
-      rgba(0, 0, 0, 0.52) 22%,
-      #000 34%,
+      rgba(0, 0, 0, 0.04) 6%,
+      rgba(0, 0, 0, 0.45) 20%,
+      #000 32%,
       #000 100%
     ),
     linear-gradient(
@@ -142,9 +383,9 @@ body {
     linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.06) 8%,
-      rgba(0, 0, 0, 0.52) 22%,
-      #000 34%,
+      rgba(0, 0, 0, 0.04) 6%,
+      rgba(0, 0, 0, 0.45) 20%,
+      #000 32%,
       #000 100%
     ),
     linear-gradient(

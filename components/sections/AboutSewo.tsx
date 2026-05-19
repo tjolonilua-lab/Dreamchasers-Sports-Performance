@@ -63,9 +63,13 @@ export function AboutSewo() {
       title="About Sewo"
       density="airy"
       animateEnter
-      className="relative overflow-hidden bg-gradient-to-b from-dsp-bg via-dsp-navy/15 to-dsp-bg"
+      tone="story"
+      className="dsp-story-about relative -mt-20 overflow-hidden bg-transparent pt-16 sm:-mt-28 sm:pt-20"
     >
-      <div className="pointer-events-none absolute left-1/2 top-24 z-0 h-72 w-[min(140vw,900px)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,212,255,0.06),transparent_62%)] blur-3xl" />
+      <div
+        className="dsp-story-about-vignette pointer-events-none absolute inset-0 z-0"
+        aria-hidden
+      />
 
       <div className="relative z-[1] grid items-center gap-12 lg:grid-cols-2 lg:gap-12 xl:gap-16">
         <div className="relative min-h-[300px] lg:-ml-2 lg:min-h-[440px] xl:-ml-4">
@@ -73,29 +77,25 @@ export function AboutSewo() {
             className="dsp-glow pointer-events-none absolute left-1/2 top-1/2 z-0 h-[min(95vw,520px)] w-[min(95vw,520px)] -translate-x-1/2 -translate-y-1/2 opacity-20"
             aria-hidden
           />
-          <div className="relative h-full min-h-[300px] overflow-hidden rounded-sm border border-white/10 bg-dsp-surface/15 shadow-[0_22px_56px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.05] lg:min-h-[440px]">
+          <div className="dsp-about-photo-frame relative h-full min-h-[300px] overflow-hidden lg:min-h-[440px]">
             <FallbackImg
               src={SITE_PHOTO_ASSETS.aboutTcuGame}
               alt="Sewo Olonilua runs with the football for TCU"
-              className="relative z-[1] h-full min-h-[300px] w-full object-cover object-[center_38%] lg:min-h-[440px]"
+              className="dsp-about-photo-mask relative z-[1] h-full min-h-[300px] w-full object-cover object-[center_38%] lg:min-h-[440px]"
               fallback={<AboutFallback />}
-            />
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[32%] bg-gradient-to-t from-dsp-bg/70 via-dsp-bg/15 to-transparent"
-              aria-hidden
             />
           </div>
         </div>
 
         <div className="relative flex flex-col justify-center lg:pl-2">
-          <p className="text-lg font-medium leading-relaxed text-white/85">
+          <p className="dsp-story-lead text-lg font-medium text-white/85">
             Sewo Olonilua is a former professional football player and TCU standout who
             brings elite-level playing experience to youth athlete development. Raised in
             Kingwood, Texas, he climbed from nationally ranked high school film to Power
             Five production and NFL locker rooms—and now channels that path into speed,
             strength, discipline, and confidence for the next generation.
           </p>
-          <p className="mt-5 text-base leading-relaxed text-white/58">
+          <p className="dsp-story-body mt-5 text-base">
             Dreamchasers athletes train with someone who has lived the recruiting grind,
             bowl-game stakes, combine preparation, and pro-day standards—not just read
             about them.
@@ -147,11 +147,11 @@ export function AboutSewo() {
         </div>
       </div>
 
-      <div className="mt-14 border-t border-white/10 pt-12">
+      <div className="dsp-story-divider">
         <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-white sm:text-3xl">
           Awards & career highlights
         </h3>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">
+        <p className="dsp-story-body mt-3 max-w-3xl text-sm">
           Honors and milestones from Sewo&apos;s playing career—summarized for families who
           want to know the depth behind the coaching.
         </p>
@@ -162,7 +162,7 @@ export function AboutSewo() {
               <h4 className="border-b border-dsp-blue/35 pb-3 font-display text-xs uppercase tracking-[0.28em] text-dsp-blue">
                 {block.heading}
               </h4>
-              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-white/72">
+              <ul className="dsp-story-body mt-4 space-y-3 text-sm text-white/72">
                 {block.items.map((line) => (
                   <li key={line} className="flex gap-2">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-dsp-blue/80" />
@@ -175,11 +175,11 @@ export function AboutSewo() {
         </div>
       </div>
 
-      <div className="mt-12 border-t border-white/10 pt-12">
+      <div className="dsp-story-divider">
         <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-white sm:text-3xl">
           College statistics — TCU
         </h3>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">
+        <p className="dsp-story-body mt-3 max-w-3xl text-sm">
           Regular-season rushing and receiving totals (FBS) from{" "}
           <a
             href={FOOTBALL_DB_PLAYER_URL}

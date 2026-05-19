@@ -53,7 +53,7 @@ export function RevealOnScroll({ children, className = "" }: Props) {
   return (
     <div
       ref={ref}
-      className={`w-full transition-[opacity,transform] duration-500 ease-out motion-reduce:transform-none motion-reduce:transition-none motion-reduce:opacity-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"} ${className}`}
+      className={`w-full transition-[opacity,transform] duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none motion-reduce:opacity-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${className}`}
     >
       {children}
     </div>
