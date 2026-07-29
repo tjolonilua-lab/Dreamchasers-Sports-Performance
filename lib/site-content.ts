@@ -12,6 +12,9 @@
  * Training film room (homepage teaser grid):
  *   Curate `TRAINING_FILM_ROOM_CLIPS` — YouTube IDs, card titles, modal copy, optional `tag`.
  *
+ * Youth camp photo gallery:
+ *   Curate `CAMP_GALLERY_PHOTOS` in `lib/camp-gallery.ts` and drop files in `public/images/camp/`.
+ *
  * Film journey picks:
  *   Curated in `FILM_JOURNEY_VIDEOS`: either a YouTube ID (`watch?v=`) **or** a Hudl embed.
  *   For Hudl, use `hudlEmbedUrl` (iframe `src` from Share → Embed, HTTPS). Optionally set

@@ -4,6 +4,7 @@ import { SectionBreather } from "@/components/ui/SectionBreather";
 import { AboutSewo } from "@/components/sections/AboutSewo";
 import { AthleteOffersProof } from "@/components/sections/AthleteOffersProof";
 import { CampAnnouncement } from "@/components/sections/CampAnnouncement";
+import { CampGallery } from "@/components/sections/CampGallery";
 import { BookingSection } from "@/components/sections/BookingSection";
 import { FilmJourney } from "@/components/sections/FilmJourney";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -25,6 +26,7 @@ export default function Home() {
         />
         <Hero />
         <CampAnnouncement />
+        <CampGallery />
         <AngledDivider />
         <PerformancePillars />
         <SectionBreather />

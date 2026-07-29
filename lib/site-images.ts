@@ -1,6 +1,8 @@
 /**
  * Local marketing photography (`public/images/`).
  * Replace with transparent cutouts later without changing import sites.
+ *
+ * Camp gallery shots live under `public/images/camp/` — see `lib/camp-gallery.ts`.
  */
 export const SITE_PHOTO_ASSETS = {
   heroCowboysGame: "/images/sewo-cowboys-game.png",

@@ -487,3 +487,60 @@ body {
   background-color: rgba(255, 255, 255, 0.06);
   color: var(--dsp-blue);
 }
+
+/**
+ * Youth camp gallery mosaic — portrait-first tiles with one featured span.
+ */
+.dsp-camp-gallery-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .dsp-camp-gallery-grid {
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .dsp-camp-gallery-grid {
+    gap: 1.15rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .dsp-camp-gallery-item {
+    grid-column: span 4;
+  }
+
+  .dsp-camp-gallery-item--featured {
+    grid-column: span 8;
+    grid-row: span 2;
+  }
+
+  .dsp-camp-gallery-item--featured > button {
+    height: 100%;
+  }
+}
+
+@keyframes dsp-camp-gallery-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dsp-camp-gallery-item {
+  animation: dsp-camp-gallery-rise 0.65s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsp-camp-gallery-item {
+    animation: none;
+  }
+}
