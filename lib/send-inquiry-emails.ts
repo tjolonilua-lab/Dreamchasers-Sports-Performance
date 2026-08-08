@@ -1,8 +1,8 @@
 import { SEWO_NOTIFICATION_EMAIL } from "@/lib/contact";
-import type { SchedulePayload } from "@/lib/schedule-schema";
+import type { BookingPayload } from "@/lib/booking-schema";
 import { getTrainingPackage } from "@/lib/training-packages";
-import { format, parse } from "date-fns";
 import { Resend } from "resend";
+import type { EmailSendResult } from "@/lib/send-schedule-emails";
 
 function escapeHtml(text: string): string {
   return text
@@ -18,22 +18,8 @@ function row(label: string, value: string | undefined) {
   return `<tr><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;font-weight:600;width:180px;">${escapeHtml(label)}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;">${escapeHtml(value)}</td></tr>`;
 }
 
-function formatPreferredSlot(raw: string): string {
-  try {
-    const d = parse(raw, "yyyy-MM-dd'T'HH:mm", new Date());
-    return format(d, "EEEE, MMMM d, yyyy 'at' h:mm a");
-  } catch {
-    return raw;
-  }
-}
-
-export type EmailSendResult =
-  | { ok: true; emailed: true }
-  | { ok: true; emailed: false; reason: "missing_env" }
-  | { ok: false; emailed: false; message: string };
-
-export async function sendScheduleEmails(
-  data: SchedulePayload,
+export async function sendInquiryEmails(
+  data: BookingPayload,
 ): Promise<EmailSendResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.EMAIL_FROM?.trim();
@@ -43,11 +29,6 @@ export async function sendScheduleEmails(
   }
 
   const resend = new Resend(apiKey);
-
-  const slotsHtml = row(
-    "Preferred session time",
-    formatPreferredSlot(data.preferredSlot),
-  );
   const pkg = getTrainingPackage(data.packageId);
   const packageLine = pkg
     ? `${pkg.name} (${pkg.priceLabel}) — ${pkg.cadence}`
@@ -55,7 +36,7 @@ export async function sendScheduleEmails(
 
   const sewoHtml = `
   <div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111;">
-    <h2 style="margin:0 0 12px;">New session scheduling request</h2>
+    <h2 style="margin:0 0 12px;">New training inquiry</h2>
     <p style="margin:0 0 16px;color:#374151;">Reply directly to this email to reach <strong>${escapeHtml(data.email)}</strong>.</p>
     <table style="border-collapse:collapse;width:100%;max-width:560px;">
       ${row("Parent / guardian", data.parentName)}
@@ -64,25 +45,23 @@ export async function sendScheduleEmails(
       ${row("Athlete", data.athleteName)}
       ${row("Age", data.athleteAge)}
       ${row("Sport", data.sport)}
-      ${row("Session type", data.sessionType)}
+      ${row("Training interest", data.trainingInterest)}
       ${row("Package interest", packageLine)}
-      ${row("Timezone reference", data.timezone)}
-      ${slotsHtml}
-      ${row("Notes", data.notes)}
+      ${row("Preferred days / times", data.preferredSchedule)}
+      ${row("Goals / notes", data.goals)}
     </table>
   </div>`;
 
   const requesterHtml = `
   <div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111;">
-    <h2 style="margin:0 0 12px;">Thanks — we received your session request</h2>
+    <h2 style="margin:0 0 12px;">Thanks — we received your inquiry</h2>
     <p style="margin:0 0 16px;color:#374151;">Hi ${escapeHtml(data.parentName)},</p>
-    <p style="margin:0 0 16px;color:#374151;">Dreamchasers Sports Performance got your preferred session time for <strong>${escapeHtml(data.athleteName)}</strong>. Sewo will follow up to confirm availability and location.</p>
+    <p style="margin:0 0 16px;color:#374151;">Dreamchasers Sports Performance got your message about training for <strong>${escapeHtml(data.athleteName)}</strong>. Sewo will follow up with availability and the best fit.</p>
     <table style="border-collapse:collapse;width:100%;max-width:560px;">
-      ${row("Session type", data.sessionType)}
+      ${row("Training interest", data.trainingInterest)}
       ${row("Package interest", packageLine)}
-      ${row("Timezone reference", data.timezone)}
-      ${slotsHtml}
-      ${row("Notes", data.notes)}
+      ${row("Preferred days / times", data.preferredSchedule)}
+      ${row("Goals / notes", data.goals)}
     </table>
     <p style="margin:24px 0 0;color:#6b7280;font-size:14px;">If anything looks off, reply to this email and we’ll adjust.</p>
   </div>`;
@@ -91,7 +70,7 @@ export async function sendScheduleEmails(
     from,
     to: SEWO_NOTIFICATION_EMAIL,
     replyTo: data.email,
-    subject: `New session request — ${data.parentName}`,
+    subject: `New training inquiry — ${data.parentName}`,
     html: sewoHtml,
   });
 
@@ -106,7 +85,7 @@ export async function sendScheduleEmails(
   const requesterResult = await resend.emails.send({
     from,
     to: data.email,
-    subject: "Dreamchasers — we received your session request",
+    subject: "Dreamchasers — we received your inquiry",
     html: requesterHtml,
   });
 
@@ -114,7 +93,8 @@ export async function sendScheduleEmails(
     return {
       ok: false,
       emailed: false,
-      message: requesterResult.error.message ?? "Failed to send confirmation email",
+      message:
+        requesterResult.error.message ?? "Failed to send confirmation email",
     };
   }
 

@@ -15,6 +15,12 @@
  * Youth camp photo gallery:
  *   Curate `CAMP_GALLERY_PHOTOS` in `lib/camp-gallery.ts` and drop files in `public/images/camp/`.
  *
+ * Training packages (private sessions — not camp weekly pricing):
+ *   Curate `TRAINING_PACKAGES` in `lib/training-packages.ts`.
+ *
+ * Testimonials / athlete spotlights:
+ *   `lib/testimonials.ts` and `lib/athlete-spotlights.ts`.
+ *
  * Film journey picks:
  *   Curated in `FILM_JOURNEY_VIDEOS`: either a YouTube ID (`watch?v=`) **or** a Hudl embed.
  *   For Hudl, use `hudlEmbedUrl` (iframe `src` from Share → Embed, HTTPS). Optionally set
@@ -122,6 +128,12 @@ export const ATHLETE_OFFER_PROOF_POSTS: AthleteOfferProofPost[] = [
     instagramUrl: "https://www.instagram.com/p/DFOMbbZPUFa/",
     captionExcerpt:
       "Elevating the next generation — celebrating young athletes putting in the work (#DawgWork, Dream Chasers Only).",
+    outcome: { kind: "offer", school: "College pathway spotlight" },
+  },
+  {
+    instagramUrl: "https://www.instagram.com/p/DF_cqGmOpEA/",
+    captionExcerpt:
+      "Clip-length proof from real DSP sessions — drills, tempo, and athletes who show up ready to chase it.",
   },
 ];
 

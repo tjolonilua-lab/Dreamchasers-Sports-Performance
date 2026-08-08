@@ -1,0 +1,38 @@
+"use client";
+
+import {
+  TRAINING_PACKAGES,
+  type TrainingPackageId,
+} from "@/lib/training-packages";
+
+type Props = {
+  error?: string;
+  defaultPackageId?: TrainingPackageId;
+};
+
+export function PackageSelectField({ error, defaultPackageId }: Props) {
+  return (
+    <div>
+      <label
+        htmlFor="packageId"
+        className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55"
+      >
+        Package interest (optional)
+      </label>
+      <select
+        id="packageId"
+        name="packageId"
+        defaultValue={defaultPackageId ?? ""}
+        className="mt-2 w-full rounded-sm border border-white/15 bg-dsp-bg px-4 py-3 text-sm text-white outline-none ring-dsp-blue/40 focus:border-dsp-blue focus:ring-2"
+      >
+        <option value="">No package selected</option>
+        {TRAINING_PACKAGES.map((pkg) => (
+          <option key={pkg.id} value={pkg.id}>
+            {pkg.name} — {pkg.priceLabel}
+          </option>
+        ))}
+      </select>
+      {error ? <p className="mt-1 text-xs text-red-300">{error}</p> : null}
+    </div>
+  );
+}

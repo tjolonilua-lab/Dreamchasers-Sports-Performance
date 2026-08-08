@@ -6,12 +6,14 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "#programs", label: "Programs" },
-  { href: "#film-room", label: "Film room" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#about", label: "About" },
-  { href: "#film", label: "Film" },
-  { href: "#instagram", label: "Instagram" },
+  { href: "/#packages", label: "Training" },
+  { href: "/7v7", label: "7v7" },
+  { href: "/recruiting", label: "Recruiting" },
+  { href: "/#youth-camp", label: "Camps" },
+  { href: "/#athletes", label: "Athletes" },
+  { href: "/#journey", label: "Journey" },
+  { href: "/#gallery", label: "Media" },
+  { href: "/#book", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -19,7 +21,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.07] bg-dsp-bg/88 shadow-[0_12px_48px_rgba(0,0,0,0.42)] backdrop-blur-md backdrop-saturate-150">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="group flex shrink-0 items-center gap-3 sm:gap-3.5"
@@ -39,26 +41,26 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="hidden items-center gap-10 md:flex"
+          className="hidden items-center gap-5 lg:flex xl:gap-7"
           aria-label="Primary"
         >
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 transition hover:text-dsp-blue"
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 transition hover:text-dsp-blue"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <ButtonLink href="#book" className="!py-2.5 !px-6">
-            Book a Session
+          <ButtonLink href="/#book" className="!py-2.5 !px-5">
+            Book Training
           </ButtonLink>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <ButtonLink href="#book" className="!py-2 !px-3 text-[10px] sm:!px-4">
-            Book a Session
+        <div className="flex items-center gap-2 lg:hidden">
+          <ButtonLink href="/#book" className="!py-2 !px-3 text-[10px] sm:!px-4">
+            Book Training
           </ButtonLink>
           <button
             type="button"
@@ -78,18 +80,18 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-white/10 bg-dsp-navy/95 px-4 py-4 md:hidden"
+          className="border-t border-white/10 bg-dsp-navy/95 px-4 py-4 lg:hidden"
         >
           <div className="flex flex-col gap-3">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/80"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

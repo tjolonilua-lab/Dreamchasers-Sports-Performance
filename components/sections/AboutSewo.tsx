@@ -1,3 +1,4 @@
+import { CareerStatCards } from "@/components/sections/CareerStatCards";
 import { FallbackImg } from "@/components/ui/FallbackImg";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -139,9 +140,9 @@ export function AboutSewo() {
             </p>
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="#book">Book a Session</ButtonLink>
-            <ButtonLink href="#film" variant="outline">
-              Watch The Journey
+            <ButtonLink href="/#book">Book Training</ButtonLink>
+            <ButtonLink href="/#journey" variant="outline">
+              Sewo’s Journey
             </ButtonLink>
           </div>
         </div>
@@ -174,6 +175,8 @@ export function AboutSewo() {
           ))}
         </div>
       </div>
+
+      <CareerStatCards />
 
       <div className="dsp-story-divider">
         <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-white sm:text-3xl">

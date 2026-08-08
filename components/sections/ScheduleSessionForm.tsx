@@ -1,6 +1,7 @@
 "use client";
 
 import { PreferredSlotPicker } from "@/components/scheduling/PreferredSlotPicker";
+import { PackageSelectField } from "@/components/sections/PackageSelectField";
 import { Button } from "@/components/ui/Button";
 import {
   Field,
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/form-fields";
 import { trainingInterestValues } from "@/lib/booking-schema";
 import { scheduleSchema } from "@/lib/schedule-schema";
+import type { TrainingPackageId } from "@/lib/training-packages";
 import type { FormEvent } from "react";
 import { useState } from "react";
 
@@ -23,7 +25,11 @@ const TIMEZONES = [
 
 type FieldErrors = Record<string, string | undefined>;
 
-export function ScheduleSessionForm() {
+type Props = {
+  defaultPackageId?: TrainingPackageId;
+};
+
+export function ScheduleSessionForm({ defaultPackageId }: Props) {
   const [pending, setPending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -44,6 +50,7 @@ export function ScheduleSessionForm() {
       athleteAge: String(formData.get("athleteAge") ?? ""),
       sport: String(formData.get("sport") ?? ""),
       sessionType: String(formData.get("sessionType") ?? ""),
+      packageId: String(formData.get("packageId") ?? ""),
       timezone: String(formData.get("timezone") ?? ""),
       preferredSlot: String(formData.get("preferredSlot") ?? ""),
       notes: String(formData.get("notes") ?? ""),
@@ -203,6 +210,11 @@ export function ScheduleSessionForm() {
           </option>
         ))}
       </SelectField>
+
+      <PackageSelectField
+        error={errors.packageId}
+        defaultPackageId={defaultPackageId}
+      />
 
       <SelectField
         label="Timezone reference"
