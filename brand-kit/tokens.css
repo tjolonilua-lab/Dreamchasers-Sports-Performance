@@ -1,0 +1,47 @@
+/**
+ * Dreamchasers Sports Performance (DSP) — portable theme tokens
+ * Copy into a football app and map to your design system / Tailwind theme.
+ */
+
+:root {
+  /* Core surfaces */
+  --dsp-bg: #04070f;
+  --dsp-navy: #0a1628;
+  --dsp-surface: #0d1729;
+
+  /* Accent */
+  --dsp-blue: #00d4ff;
+  --dsp-blue-deep: #0095c7;
+
+  /* Text */
+  --dsp-text: #f4f7fb;
+  --dsp-text-strong: rgba(244, 247, 251, 0.92);
+  --dsp-text-body: rgba(244, 247, 251, 0.62);
+  --dsp-text-muted: rgba(244, 247, 251, 0.45);
+  --dsp-text-faint: rgba(244, 247, 251, 0.35);
+
+  /* Borders / glass */
+  --dsp-border: rgba(255, 255, 255, 0.07);
+  --dsp-border-strong: rgba(255, 255, 255, 0.12);
+  --dsp-glass: rgba(255, 255, 255, 0.04);
+
+  /* Accent glows (cyan on navy/black) */
+  --dsp-glow-strong: rgba(0, 212, 255, 0.42);
+  --dsp-glow-soft: rgba(0, 212, 255, 0.12);
+  --dsp-glow-wash: rgba(0, 212, 255, 0.09);
+
+  /* Fonts — load via next/font or @fontsource */
+  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Tailwind v4 @theme mapping (optional) */
+@theme inline {
+  --color-dsp-bg: var(--dsp-bg);
+  --color-dsp-navy: var(--dsp-navy);
+  --color-dsp-surface: var(--dsp-surface);
+  --color-dsp-blue: var(--dsp-blue);
+  --color-dsp-blue-deep: var(--dsp-blue-deep);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
