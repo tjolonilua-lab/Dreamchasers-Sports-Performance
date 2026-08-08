@@ -17,23 +17,34 @@ const display = Bebas_Neue({
 });
 
 const siteTitle =
-  "Dreamchasers Sports Performance | Train With a Former NFL Athlete";
+  "Dreamchasers Sports Performance | Football Training Houston";
 const siteDescription =
-  "Premium speed, strength, agility, and confidence training for youth athletes—led by Sewo Olonilua. Former Dallas Cowboy and TCU standout.";
+  "Youth football training, speed training, and sports performance in the Houston / Kingwood area — led by former NFL running back and TCU standout Sewo Olonilua. Book training, camps, 7v7, and recruiting support.";
 
 const metadataBase = getMetadataBase();
 
 export const metadata: Metadata = {
   metadataBase,
-  title: siteTitle,
-  description: siteDescription,
-  alternates: {
-    canonical: "/",
+  title: {
+    default: siteTitle,
+    template: "%s | Dreamchasers Sports Performance",
   },
+  description: siteDescription,
+  keywords: [
+    "football training Houston",
+    "youth football training Houston",
+    "speed training Houston",
+    "sports performance Houston",
+    "football camps Houston",
+    "7v7 football Houston",
+    "football recruiting Houston",
+    "Sewo Olonilua",
+    "Dreamchasers Sports Performance",
+    "Kingwood football training",
+  ],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
     siteName: "Dreamchasers Sports Performance",
     title: siteTitle,
     description: siteDescription,
@@ -50,8 +61,6 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: ["/images/sewo-cowboys-game.png"],
   },
-  // Explicit `rel="icon"` — layout previously set only `apple`, so `icons.icon` stayed empty
-  // and Next never merged `app/icon.png` into the head; tabs showed no favicon.
   icons: {
     icon: [{ url: BRAND_MONOGRAM_SRC, type: "image/png" }],
     apple: [{ url: BRAND_MONOGRAM_SRC, type: "image/png", sizes: "180x180" }],

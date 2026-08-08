@@ -1,4 +1,5 @@
 import { bookingSchema } from "@/lib/booking-schema";
+import { sendInquiryEmails } from "@/lib/send-inquiry-emails";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -21,5 +22,23 @@ export async function POST(request: Request) {
     console.info("[booking:inquiry]", parsed.data);
   }
 
-  return NextResponse.json({ ok: true });
+  const emailResult = await sendInquiryEmails(parsed.data);
+
+  if (!emailResult.ok) {
+    return NextResponse.json(
+      { ok: false, error: emailResult.message },
+      { status: 502 },
+    );
+  }
+
+  return NextResponse.json({
+    ok: true,
+    emailed: emailResult.emailed,
+    ...(emailResult.emailed
+      ? {}
+      : {
+          emailNotice:
+            "Saved request; add RESEND_API_KEY and EMAIL_FROM to enable confirmation emails.",
+        }),
+  });
 }

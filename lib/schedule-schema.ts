@@ -1,4 +1,5 @@
 import { trainingInterestValues } from "@/lib/booking-schema";
+import { trainingPackageIds } from "@/lib/training-packages";
 import { z } from "zod";
 
 /** Optional copy — empty or omitted becomes `undefined` after parse (safe for JSON bodies that drop undefined keys). */
@@ -10,6 +11,10 @@ export const scheduleOptionalNotes = z
     return t === "" ? undefined : t;
   });
 
+const optionalPackageId = z
+  .union([z.enum(trainingPackageIds), z.literal(""), z.undefined()])
+  .transform((v) => (v === "" || v === undefined ? undefined : v));
+
 export const scheduleSchema = z.object({
   athleteName: z.string().trim().min(1, "Athlete name is required"),
   parentName: z.string().trim().min(1, "Parent / guardian name is required"),
@@ -18,6 +23,7 @@ export const scheduleSchema = z.object({
   athleteAge: z.string().trim().min(1, "Age is required"),
   sport: z.string().trim().min(1, "Sport is required"),
   sessionType: z.enum(trainingInterestValues),
+  packageId: optionalPackageId,
   timezone: z.string().trim().min(1, "Select a timezone"),
   preferredSlot: z
     .string()

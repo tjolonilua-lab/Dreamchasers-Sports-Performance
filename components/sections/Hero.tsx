@@ -53,17 +53,18 @@ export function Hero() {
             Dreamchasers Sports Performance
           </p>
           <h1 className="dsp-display-heading font-display text-[clamp(2.85rem,8.5vw,5.35rem)] uppercase leading-[0.92] tracking-[0.022em] text-white drop-shadow-[0_0_48px_rgba(0,212,255,0.14)]">
-            Train Like An NFL Athlete
+            Chase Your Dream
           </h1>
           <p className="dsp-story-lead mt-5 max-w-xl text-lg font-medium text-white/82">
-            Speed, strength, agility, and confidence training for young athletes ready to
-            level up.
+            Train with former NFL running back Sewo Olonilua and prepare for the next
+            level — speed, strength, explosiveness, football skills, and recruiting
+            readiness.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <ButtonLink href="#book">Book a Session</ButtonLink>
-            <ButtonLink href="#programs" variant="outline">
-              View Programs
+            <ButtonLink href="/#book">Book Training</ButtonLink>
+            <ButtonLink href="/#packages" variant="outline">
+              Explore Packages
             </ButtonLink>
           </div>
 

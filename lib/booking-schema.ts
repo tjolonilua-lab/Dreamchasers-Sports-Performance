@@ -1,3 +1,4 @@
+import { trainingPackageIds } from "@/lib/training-packages";
 import { z } from "zod";
 
 export const trainingInterestValues = [
@@ -8,6 +9,10 @@ export const trainingInterestValues = [
   "Football Development",
 ] as const;
 
+const optionalPackageId = z
+  .union([z.enum(trainingPackageIds), z.literal(""), z.undefined()])
+  .transform((v) => (v === "" || v === undefined ? undefined : v));
+
 export const bookingSchema = z.object({
   athleteName: z.string().trim().min(1, "Athlete name is required"),
   parentName: z.string().trim().min(1, "Parent / guardian name is required"),
@@ -16,6 +21,7 @@ export const bookingSchema = z.object({
   athleteAge: z.string().trim().min(1, "Age is required"),
   sport: z.string().trim().min(1, "Sport is required"),
   trainingInterest: z.enum(trainingInterestValues),
+  packageId: optionalPackageId,
   goals: z.string().trim().optional(),
   preferredSchedule: z.string().trim().optional(),
 });
