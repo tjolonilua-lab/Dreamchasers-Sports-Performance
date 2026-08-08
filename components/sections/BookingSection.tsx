@@ -9,7 +9,7 @@ import {
 import type { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const ScheduleSessionForm = dynamic(
   () =>
@@ -34,8 +34,11 @@ function BookingSectionWithSearchParams() {
   const searchParams = useSearchParams();
   const youthCampInquiry = searchParams.get("inquiry") === "youth-camp";
   const packageId = getTrainingPackage(searchParams.get("package"))?.id;
+
+  // Remount when package/inquiry deep-links change so the select prefills fresh.
   return (
     <BookingSectionInner
+      key={`${packageId ?? "none"}-${youthCampInquiry ? "camp" : "std"}`}
       youthCampInquiry={youthCampInquiry}
       defaultPackageId={packageId}
     />
@@ -58,12 +61,18 @@ function BookingSectionInner({
   defaultPackageId?: TrainingPackageId;
 }) {
   const [tab, setTab] = useState<TabId>(() =>
-    youthCampInquiry ? "intake" : "schedule",
+    youthCampInquiry && !defaultPackageId ? "intake" : "schedule",
   );
   const [inquiryDefaultInterest] = useState<TrainingInterest | undefined>(() =>
     youthCampInquiry ? "Youth Camp" : undefined,
   );
   const pkg = getTrainingPackage(defaultPackageId);
+
+  useEffect(() => {
+    if (!defaultPackageId) return;
+    const el = document.getElementById("book");
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [defaultPackageId]);
 
   return (
     <div className="mx-auto max-w-3xl">

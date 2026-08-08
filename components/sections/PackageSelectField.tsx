@@ -10,6 +10,7 @@ type Props = {
   defaultPackageId?: TrainingPackageId;
 };
 
+/** Uncontrolled select — remount via parent `key` when `?package=` changes. */
 export function PackageSelectField({ error, defaultPackageId }: Props) {
   return (
     <div>
