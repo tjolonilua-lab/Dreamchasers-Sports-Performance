@@ -2,22 +2,40 @@
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { ButtonLink } from "@/components/ui/Button";
+import { scrollToSectionId, sectionIdFromHref } from "@/lib/scroll-to-section";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { useState } from "react";
 
+/**
+ * Homepage hash links follow on-page section order; dedicated pages sit after
+ * the main story sections and before Contact.
+ */
 const links = [
+  { href: "/#youth-camp", label: "Camps" },
+  { href: "/#gallery", label: "Media" },
   { href: "/#packages", label: "Training" },
+  { href: "/#journey", label: "Journey" },
+  { href: "/#athletes", label: "Athletes" },
   { href: "/7v7", label: "7v7" },
   { href: "/recruiting", label: "Recruiting" },
-  { href: "/#youth-camp", label: "Camps" },
-  { href: "/#athletes", label: "Athletes" },
-  { href: "/#journey", label: "Journey" },
-  { href: "/#gallery", label: "Media" },
   { href: "/#book", label: "Contact" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  function handleInPageNav(e: MouseEvent<HTMLAnchorElement>, href: string) {
+    const id = sectionIdFromHref(href);
+    if (!id) return;
+    // Only intercept when already on the homepage — otherwise let Next route.
+    if (pathname !== "/") return;
+    e.preventDefault();
+    setOpen(false);
+    scrollToSectionId(id);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.07] bg-dsp-bg/88 shadow-[0_12px_48px_rgba(0,0,0,0.42)] backdrop-blur-md backdrop-saturate-150">
@@ -48,18 +66,27 @@ export function SiteHeader() {
             <Link
               key={l.href}
               href={l.href}
+              onClick={(e) => handleInPageNav(e, l.href)}
               className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 transition hover:text-dsp-blue"
             >
               {l.label}
             </Link>
           ))}
-          <ButtonLink href="/#book" className="!py-2.5 !px-5">
+          <ButtonLink
+            href="/#book"
+            className="!py-2.5 !px-5"
+            onClick={(e) => handleInPageNav(e, "/#book")}
+          >
             Book Training
           </ButtonLink>
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ButtonLink href="/#book" className="!py-2 !px-3 text-[10px] sm:!px-4">
+          <ButtonLink
+            href="/#book"
+            className="!py-2 !px-3 text-[10px] sm:!px-4"
+            onClick={(e) => handleInPageNav(e, "/#book")}
+          >
             Book Training
           </ButtonLink>
           <button
@@ -88,7 +115,13 @@ export function SiteHeader() {
                 key={l.href}
                 href={l.href}
                 className="py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/80"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  if (sectionIdFromHref(l.href) && pathname === "/") {
+                    handleInPageNav(e, l.href);
+                  } else {
+                    setOpen(false);
+                  }
+                }}
               >
                 {l.label}
               </Link>

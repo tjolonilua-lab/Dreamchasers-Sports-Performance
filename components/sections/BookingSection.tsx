@@ -6,6 +6,7 @@ import {
   getTrainingPackage,
   type TrainingPackageId,
 } from "@/lib/training-packages";
+import { scrollToSectionId } from "@/lib/scroll-to-section";
 import type { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
@@ -70,8 +71,7 @@ function BookingSectionInner({
 
   useEffect(() => {
     if (!defaultPackageId) return;
-    const el = document.getElementById("book");
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToSectionId("book");
   }, [defaultPackageId]);
 
   return (

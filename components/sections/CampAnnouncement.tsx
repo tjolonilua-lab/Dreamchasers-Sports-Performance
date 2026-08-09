@@ -13,7 +13,7 @@ export function CampAnnouncement() {
   return (
     <section
       id="youth-camp"
-      className="scroll-mt-24 border-y border-white/[0.08] bg-gradient-to-r from-dsp-navy/55 via-dsp-bg to-dsp-navy/40 py-10 sm:py-12"
+      className="scroll-mt-28 border-y border-white/[0.08] bg-gradient-to-r from-dsp-navy/55 via-dsp-bg to-dsp-navy/40 py-10 sm:py-12"
       aria-labelledby={headingId}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

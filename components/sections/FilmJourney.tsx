@@ -25,7 +25,7 @@ export function FilmJourney() {
   return (
     <section
       id="film"
-      className="dsp-story-mid relative scroll-mt-24 bg-transparent py-16 sm:py-20"
+      className="dsp-story-mid relative scroll-mt-28 bg-transparent py-16 sm:py-20"
     >
       <RevealOnScroll className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-10 max-w-3xl">

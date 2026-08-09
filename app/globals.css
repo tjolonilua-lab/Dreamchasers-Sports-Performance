@@ -22,6 +22,12 @@ body {
   color: #f4f7fb;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /**
  * Cinematic scroll spine — unified navy/black field + faint brand watermark.
  * Fixed layer behind page content (Hero → About → Proof narrative).
