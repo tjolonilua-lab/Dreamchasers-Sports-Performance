@@ -79,7 +79,7 @@ export function SectionShell({
   );
 
   return (
-    <section id={id} className={`relative scroll-mt-24 ${pad} ${className}`}>
+    <section id={id} className={`relative scroll-mt-28 ${pad} ${className}`}>
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {animateEnter ? <RevealOnScroll>{body}</RevealOnScroll> : body}
       </div>

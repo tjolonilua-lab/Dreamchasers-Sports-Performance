@@ -27,7 +27,7 @@ export function AthleteOffersProof() {
 
         <div className="mt-12 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <ButtonLink
-            href="#book"
+            href="/#book"
             className="w-full justify-center sm:w-auto sm:min-w-[220px]"
           >
             Start Your Training Journey
