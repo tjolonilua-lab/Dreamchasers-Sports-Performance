@@ -1,6 +1,9 @@
 import { SEWO_NOTIFICATION_EMAIL } from "@/lib/contact";
 import type { BookingPayload } from "@/lib/booking-schema";
-import { getTrainingPackage } from "@/lib/training-packages";
+import {
+  formatTrainingPackageLabel,
+  getTrainingPackage,
+} from "@/lib/training-packages";
 import { Resend } from "resend";
 import type { EmailSendResult } from "@/lib/send-schedule-emails";
 
@@ -31,7 +34,7 @@ export async function sendInquiryEmails(
   const resend = new Resend(apiKey);
   const pkg = getTrainingPackage(data.packageId);
   const packageLine = pkg
-    ? `${pkg.name} (${pkg.priceLabel}) — ${pkg.cadence}`
+    ? `${formatTrainingPackageLabel(pkg)} — ${pkg.cadence}`
     : undefined;
 
   const sewoHtml = `

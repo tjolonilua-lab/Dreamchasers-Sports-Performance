@@ -3,6 +3,7 @@
 import { IntakeInquiryForm } from "@/components/sections/IntakeInquiryForm";
 import { trainingInterestValues } from "@/lib/booking-schema";
 import {
+  formatTrainingPackageLabel,
   getTrainingPackage,
   type TrainingPackageId,
 } from "@/lib/training-packages";
@@ -80,7 +81,7 @@ function BookingSectionInner({
         <p className="mb-6 rounded-sm border border-dsp-blue/30 bg-dsp-blue/[0.08] px-4 py-3 text-sm text-white/80">
           Package selected:{" "}
           <span className="font-semibold text-dsp-blue">
-            {pkg.name} ({pkg.priceLabel})
+            {formatTrainingPackageLabel(pkg)}
           </span>
           . Confirm details below and we&apos;ll follow up to lock times.
         </p>

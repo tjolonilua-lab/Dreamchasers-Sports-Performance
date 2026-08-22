@@ -1,7 +1,8 @@
 "use client";
 
 import {
-  TRAINING_PACKAGES,
+  formatTrainingPackageLabel,
+  TRAINING_PACKAGES_BY_TIER,
   type TrainingPackageId,
 } from "@/lib/training-packages";
 
@@ -27,10 +28,14 @@ export function PackageSelectField({ error, defaultPackageId }: Props) {
         className="mt-2 w-full rounded-sm border border-white/15 bg-dsp-bg px-4 py-3 text-sm text-white outline-none ring-dsp-blue/40 focus:border-dsp-blue focus:ring-2"
       >
         <option value="">No package selected</option>
-        {TRAINING_PACKAGES.map((pkg) => (
-          <option key={pkg.id} value={pkg.id}>
-            {pkg.name} — {pkg.priceLabel}
-          </option>
+        {TRAINING_PACKAGES_BY_TIER.map((tier) => (
+          <optgroup key={tier.tier} label={tier.label}>
+            {tier.packages.map((pkg) => (
+              <option key={pkg.id} value={pkg.id}>
+                {formatTrainingPackageLabel(pkg)}
+              </option>
+            ))}
+          </optgroup>
         ))}
       </select>
       {error ? <p className="mt-1 text-xs text-red-300">{error}</p> : null}

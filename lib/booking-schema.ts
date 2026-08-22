@@ -1,4 +1,8 @@
-import { trainingPackageIds } from "@/lib/training-packages";
+import {
+  LEGACY_TRAINING_PACKAGE_IDS,
+  normalizeTrainingPackageId,
+  trainingPackageIds,
+} from "@/lib/training-packages";
 import { z } from "zod";
 
 export const trainingInterestValues = [
@@ -10,8 +14,16 @@ export const trainingInterestValues = [
 ] as const;
 
 const optionalPackageId = z
-  .union([z.enum(trainingPackageIds), z.literal(""), z.undefined()])
-  .transform((v) => (v === "" || v === undefined ? undefined : v));
+  .union([
+    z.enum(trainingPackageIds),
+    z.enum(LEGACY_TRAINING_PACKAGE_IDS),
+    z.literal(""),
+    z.undefined(),
+  ])
+  .transform((v) => {
+    if (v === "" || v === undefined) return undefined;
+    return normalizeTrainingPackageId(v);
+  });
 
 export const bookingSchema = z.object({
   athleteName: z.string().trim().min(1, "Athlete name is required"),
