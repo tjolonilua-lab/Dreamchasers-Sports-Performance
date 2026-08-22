@@ -37,7 +37,7 @@ export async function CampGallery() {
       id="gallery"
       eyebrow="From the field"
       title="Youth Camp Gallery"
-      description={`Real sessions from ${camp.title} — athletes stacking reps for strength, speed, and confidence.`}
+      description={`Real sessions from ${camp.title} — tap through camp photos without the scroll marathon.`}
       density="default"
       animateEnter
       className="relative overflow-hidden border-y border-white/[0.06] bg-gradient-to-b from-dsp-bg via-dsp-navy/30 to-dsp-bg"
