@@ -63,14 +63,21 @@ export function CampGalleryGrid({ photos }: Props) {
     return () => window.clearInterval(timer);
   }, [ordered.length, paused, reduceMotion]);
 
+  // Keep the active thumb centered in the filmstrip only.
+  // Do NOT use Element.scrollIntoView — even with block:"nearest" it still
+  // scrolls the page when the gallery is off-screen, yanking visitors back up
+  // every auto-advance (~5s).
   useEffect(() => {
     const strip = filmstripRef.current;
     if (!strip) return;
     const thumb = strip.children[index] as HTMLElement | undefined;
-    thumb?.scrollIntoView({
+    if (!thumb) return;
+
+    const nextLeft =
+      thumb.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2;
+    strip.scrollTo({
+      left: Math.max(0, nextLeft),
       behavior: reduceMotion ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center",
     });
   }, [index, reduceMotion]);
 
